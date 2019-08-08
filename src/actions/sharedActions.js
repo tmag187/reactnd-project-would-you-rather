@@ -4,8 +4,9 @@ import  { receiveUsers }  from './usersActions';
 export function handleInitialUsers() {
     return (dispatch) => {
         return _getUsers()
-        .then(({users}) => {
-            dispatch(receiveUsers(users));
+        .then(users => {
+            console.log('users '+ users.sarahedo.id)
+            dispatch(receiveUsers(users))
         })
     }
 }

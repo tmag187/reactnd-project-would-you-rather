@@ -4,14 +4,28 @@
 
 
 .App-header {
-  background-color: white;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
+  background-color: rgb(5, 5, 5);
+  min-height: 4rem;
+  padding-top:30px;
+  padding: 10px 10 10 10;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  font-style: bold;
+  color: rgb(253, 251, 251);
+}
+
+.select-sign {
+  background-color: white;
+  min-height: 10vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
   color: black;
+}
+
+.submit-button {
+  font-size: 24px;
 }
 
 .App-link {

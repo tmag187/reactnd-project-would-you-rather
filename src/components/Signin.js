@@ -2,18 +2,30 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
  class Signin extends Component {
+    state = {
+        value:''
+    }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(' submitted ' + this.state.value);
+    }
+
+    handleChange = (e) => {
+        this.setState({value:e.target.value});
+        console.log(' selected ' + e.target.value);
+    }
+
     render() {
         let { users, userIds } = this.props;
-        console.log('users >' + this.props);
         return (
             <React.Fragment>
             <br />
             <br />
             <h2>Select a User</h2>
-            <form>
-            <select name='users' className='select-sign'>
+            <form onSubmit={this.handleSubmit} >
+            <select value={this.state.value} name='users' className='select-sign' onChange={this.handleChange} >
                {  userIds.map(userId => (
-                    <option value='User1'>{users[userId].id}</option>
+                    <option value={users[userId].id} key={userId} >{users[userId].id}</option>
                 ))}   }              
            </select>
            <br />

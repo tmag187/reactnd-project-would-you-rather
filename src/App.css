@@ -24,8 +24,55 @@
   color: black;
 }
 
+.question-card {
+  background-color: rgb(181, 228, 247);
+  min-height: 10rem;
+  align-items: center;
+  justify-content: center;
+  margin: 80px 80px 80px 80px;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  border:5px;
+  border-color: black;
+  color: black;
+}
+
+.author-label {
+  align-items: left;
+  justify-content: left;
+  position: absolute;
+  left:160px;
+  font-size: 18px;
+  color: black;
+}
+
+.title-label {
+  position: relative;
+  top:35px;
+}
+
+.question-label {
+  position: relative;
+  top:40px;
+}
+
+.view-button {
+  position: relative;
+  top:40px;
+  font-size: 14px;
+}
+
 .submit-button {
+  position: relative;
+  bottom:0px;
   font-size: 24px;
+}
+
+.avatar-image {
+  position: absolute;
+  left:90px;
+  align-items: left;
+  justify-content: left;
 }
 
 .App-link {

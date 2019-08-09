@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { handleInitialUsers } from '../actions/sharedActions';
-import { _getUsers } from '../utils/_DATA';
 import { connect } from 'react-redux';
 import  Signin  from './Signin';
+import  Questions from './Questions';
 import '../App.css';
 
 class App extends Component {
   componentDidMount() {
-    this.props.dispatch(handleInitialUsers())
+ //   this.props.dispatch(handleInitialUsers())
   }
   render() {
-    console.log(' users ::' + this.props.users);
   return (
     <div className="App">
             <header className='App-header'>
                 Would you Rather...
             </header>
-      <Signin />
+      <Router>
+        <Switch>
+            {/* <Route exact path='/' component={Signin} /> */}
+            <Route exact path='/' component={Questions} />
+            <Route exact path='/signin' component={Signin} />
+        </Switch>
+      </Router>
     </div>
   );
 }

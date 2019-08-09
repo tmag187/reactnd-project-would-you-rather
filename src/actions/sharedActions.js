@@ -5,7 +5,6 @@ export function handleInitialUsers() {
     return (dispatch) => {
         return _getUsers()
         .then(users => {
-            console.log('users '+ users.sarahedo.id)
             dispatch(receiveUsers(users))
         })
     }

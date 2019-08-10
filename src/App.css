@@ -56,6 +56,14 @@
   top:40px;
 }
 
+.radio-label {
+  position: relative;
+  top:20px;
+  padding-bottom:10px;
+  align-items: left;
+  justify-content: left;
+}
+
 .view-button {
   position: relative;
   top:40px;

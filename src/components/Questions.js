@@ -16,7 +16,7 @@ class Questions extends Component {
             <h3>Unanswered Questions</h3>
             <div>
                 {questionIds.map((id) => (
-                 <Question id={id} />
+                 <Question id={id} key={id} />
                  ))}
             </div>
             </React.Fragment>

@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS } from '../actions/questionsActions';
+import { RECEIVE_QUESTIONS, SET_QUESTION_ANSWER } from '../actions/questionsActions';
 const initialState = {};
 export default function questions(state = initialState, action) {
 switch (action.type) {
@@ -7,6 +7,10 @@ switch (action.type) {
             ...state,
             ...action.questions
        } 
+    case SET_QUESTION_ANSWER:
+        return {
+             ...state
+        } 
     default:
         return {
             ...state

@@ -29,7 +29,7 @@ export class QuestionDetails extends Component {
           console.log(' prop question ' + question.id);
           const { selectedOption } = this.state;
           if (selectedOption === '')   {
-            this.setState({selectedOption:question.optionOne.text});
+            this.setState({selectedOption:'optionOne'});
           }
         }   
         
@@ -45,10 +45,10 @@ export class QuestionDetails extends Component {
                  <h4 className='title-label'>Would You Rather...</h4> 
                  <form>
                  <div className='radio-label'>
-                 <label><input type='radio' name='answer'  onChange={this.handleChange} value={question.optionOne.text} checked={this.state.selectedOption === question.optionOne.text} />{question.optionOne.text}</label>
+                 <label><input type='radio' name='answer'  onChange={this.handleChange} value='optionOne' checked={this.state.selectedOption === 'optionOne'} />{question.optionOne.text}</label>
                  </div>
                  <div>
-                 <label className='radio-label'><input type='radio' name='answer' onChange={this.handleChange} value={question.optionTwo.text} checked={this.state.selectedOption === question.optionTwo.text} />{question.optionTwo.text}</label>
+                 <label className='radio-label'><input type='radio' name='answer' onChange={this.handleChange} value='optionTwo' checked={this.state.selectedOption === 'optionTwo'} />{question.optionTwo.text}</label>
                  </div>
                  </form>
                  <button className='view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>Submit Answer</button>
@@ -65,6 +65,7 @@ const mapStateToProps = ({questions}, props) => {
     const { id } = props.match.params;
     let question = questions[id];
     return {
+        questions,
         question,
         id
     }

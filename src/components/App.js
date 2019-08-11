@@ -9,7 +9,7 @@ import '../App.css';
 
 class App extends Component {
   componentDidMount() {
- //   this.props.dispatch(handleInitialUsers())
+    this.props.dispatch(handleInitialUsers())
   }
   render() {
   return (

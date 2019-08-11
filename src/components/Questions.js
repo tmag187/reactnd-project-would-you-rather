@@ -10,9 +10,12 @@ class Questions extends Component {
     }
 
     render() {
-        const { questionIds } = this.props;
+        const { questionIds, authedUser } = this.props;
+        console.log(' authed user ' + authedUser);
         return (
+            
             <React.Fragment>
+            { <header className='user-header'>Welcome {authedUser}</header> }
             <h3>Unanswered Questions</h3>
             <div>
                 {questionIds.map((id) => (
@@ -24,10 +27,11 @@ class Questions extends Component {
     }
 }
 
-const mapStateToProps = ({questions}) => {
+const mapStateToProps = ({questions, authedUser}) => {
     return {
-        questionIds:Object.keys(questions),
-      questions
+      questionIds:Object.keys(questions),
+      questions,
+      authedUser
     }
   }
   

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { setAuthedUser } from '../actions/authedUserActions';
  class Signin extends Component {
     state = {
         value:''
@@ -8,6 +8,9 @@ import { connect } from 'react-redux';
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(' submitted ' + this.state.value);
+        const { value } = this.state;
+        this.props.dispatch(setAuthedUser(value));
+        this.props.history.push('/');
     }
 
     handleChange = (e) => {

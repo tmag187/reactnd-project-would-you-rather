@@ -29,8 +29,8 @@ export function answerQuestion(qid) {
 export function handleAnswerQuestion(authedUser, qid, answer) {
     return (dispatch) => {
         return _saveQuestionAnswer({ authedUser, qid, answer })
-        .then(() => {
-            console.log('answer added to questions ')
+        .then((result) => {
+            console.log('answer added to questions ' + result)
             dispatch(answerQuestion(qid))
         })
     }

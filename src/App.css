@@ -24,6 +24,16 @@
   color: black;
 }
 
+.user-header {
+  justify-content: right;
+  padding-top:20px;
+  align-items: right;
+  font-size: 16px;
+  position: relative;
+  right:10px;
+  font-style: bold;
+}
+
 .question-card {
   background-color: rgb(181, 228, 247);
   min-height: 10rem;

@@ -18,28 +18,32 @@ class Questions extends Component {
         let vquestions1 = questions[id].optionOne.votes.filter((vote) => {
                return (vote === authedUser)
         });
+        if (vquestions1.length > 0) {
+            return true;
+        }
         let vquestions2 = questions[id].optionTwo.votes.filter((vote) => {
             return (vote === authedUser)
         });
         console.log(' vquestions ' + vquestions1);
         console.log(' vquestions ' + vquestions2);
-        if (vquestions1.length > 0 || vquestions2.length>0) {
-            votedfor = true;
+        if (vquestions2.length>0) {
+            return true;
         }
         console.log(' vquestions ' + votedfor);
         return votedfor;
     }
 
     handleAnsweredChange = (e) => {
-        const { questionList } = this.state;
+        
         this.setState({
-            questionList:!questionList
+            questionList:e.target.value
         });
     }
 
     render() {
         const { questionIds, authedUser, questions } = this.props;
         console.log(' authed user ' + authedUser);
+        const { questionList } = this.state;
         //console.log(' voted user ' + questions[questionIds[0]]);
         if (questions!==undefined) {
         console.log(' voted user ' + questionIds[0]);
@@ -50,12 +54,21 @@ class Questions extends Component {
             <React.Fragment>
             {/* { <header className='user-header'>Welcome {authedUser}</header> } */}
             <InfoBar />
-            <span><button onClick={this.handleAnsweredChange}>Unanswered Questions</button><button onClick={this.handleAnsweredChange}>Answered Questions</button></span>
+            <span><button onClick={this.handleAnsweredChange} value='unanswered'>Unanswered Questions</button><button onClick={this.handleAnsweredChange} value='answered'>Answered Questions</button></span>
+            {questionList === 'unanswered' &&
             <div>
                 {questionIds.map((id) => (
-                 ((questions[id].author!==authedUser && !this.votedFor(id)) && <Question id={id} key={id} />)
+                 ((questions[id].author!==authedUser && !this.votedFor(id)) && <Question id={id} key={id} questiontype={questionList} />)
                  ))}
             </div>
+            }
+            {questionList === 'answered' &&
+            <div>
+                {questionIds.map((id) => (
+                 ((questions[id].author!==authedUser && this.votedFor(id)) && <Question id={id} key={id} questiontype={questionList} />)
+                 ))}
+            </div>
+            }
             </React.Fragment>
         )
     }

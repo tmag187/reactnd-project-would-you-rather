@@ -47,6 +47,19 @@
   color: black;
 }
 
+.add-question-input {
+  background-color: rgb(216, 216, 216);
+  min-height: 10rem;
+  justify-content: top;
+  margin: 10px 10px 10px 10px;
+  font-size: 18px;
+  width:80%;
+  font-family: Arial, Helvetica, sans-serif;
+  border:5px;
+  border-color: black;
+  color: black;
+}
+
 .author-label {
   align-items: left;
   justify-content: left;
@@ -83,7 +96,7 @@
 .submit-button {
   position: relative;
   bottom:0px;
-  font-size: 24px;
+  font-size:24px;
 }
 
 .avatar-image {

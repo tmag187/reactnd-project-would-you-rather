@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+import { QuestionDetails } from './QuestionDetails';
 import { withRouter } from 'react-router-dom';
 
 
@@ -17,20 +18,33 @@ export class Question extends Component {
     }
 
     render() {
-        const { question } = this.props;
+        const { question, questiontype } = this.props;
         const { toDetail } = this.state;
           if (question!==undefined) {
           const { id, author  } = question;
           console.log(' prop question ' + question.id);
           if (toDetail) {
-                return <Redirect to={`/question/${question.id}`} />    
+                return <Redirect to={{pathname:`/question/${question.id}`, state: {questiontype:questiontype}}} />    
             }
         }      
         return (
-            <React.Fragment>
+            <React.Fragment>               
                 
-                
-               {question!==undefined &&  
+               {(questiontype==='unanswered' && question!==undefined) &&  
+                 (<Link to={`question/:${question.id}`}><div className='question-card'>
+                  <img className='avatar-image' src='' width='50px' height='60px' />
+                 <h3 className='author-label'>{question.author} Asks...</h3> 
+                 <p></p>
+                 <p></p>
+                 <h4 className='title-label'>Would You Rather...</h4> 
+                 <h3 className='question-label'>...{question.optionOne.text}...</h3>
+                 {/* <h3>{question.optionTwo.text}</h3> */}
+                 <button className='view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>View Poll</button>
+                 <p></p>
+                 </div>
+                 </Link>)}
+
+                 {(questiontype==='answered' && question!==undefined) &&  
                  (<Link to={`question/:${question.id}`}><div className='question-card'>
                   <img className='avatar-image' src='' width='50px' height='60px' />
                  <h3 className='author-label'>{question.author} Asks...</h3> 

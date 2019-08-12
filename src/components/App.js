@@ -4,6 +4,7 @@ import { handleInitialUsers } from '../actions/sharedActions';
 import { connect } from 'react-redux';
 import  Signin  from './Signin';
 import  Questions from './Questions';
+import  AddQuestion from './AddQuestion';
 import  QuestionDetails from './QuestionDetails';
 import '../App.css';
 
@@ -23,6 +24,7 @@ class App extends Component {
             <Route exact path='/' component={Questions} />
             <Route exact path='/signin' component={Signin} />
             <Route exact path='/question/:id' component={QuestionDetails} />
+            <Route exact path='/add' component={AddQuestion} />
         </Switch>
       </Router>
     </div>

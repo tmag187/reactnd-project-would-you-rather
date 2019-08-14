@@ -4,11 +4,20 @@ import { connect } from 'react-redux';
 
 class InfoBar extends Component {
     render() {
-        const { authedUser } = this.props;
+        let { authedUser } = this.props;
+        authedUser = 'johndoe';
+        console.log(authedUser);
         return (
-            <div>
-                { <span><header className='user-header'>Welcome {authedUser}<Link to={`/signin`}>    Sign Out</Link></header></span> }
-            </div>  
+            <nav>
+                <div>
+                <ul>
+              {(authedUser!=='') ?  
+                (<li>
+                    <div className='user-header'><a href='#!'>Welcome {authedUser}</a><Link to='/signin'>Sign Out</Link></div>
+                </li>): null}  
+                </ul> 
+                </div>
+            </nav>
         )
     }
 }

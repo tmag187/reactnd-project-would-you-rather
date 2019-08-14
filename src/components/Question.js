@@ -18,11 +18,17 @@ export class Question extends Component {
     }
 
     render() {
-        const { question, questiontype } = this.props;
+        const { question, questiontype, users } = this.props;
         const { toDetail } = this.state;
+        let avatarURL = '';
           if (question!==undefined) {
-          const { id, author  } = question;
-          console.log(' prop question ' + question.id);
+          let { id, author  } = question;
+          author = users[author];
+        //   let { userAvatar }  = author;
+          console.log(' prop author ' + author);
+         /*  userAvatar = users[author].avatarURL; */
+         /*  console.log(' prop userAvatar ' + userAvatar); 
+          avatarURL = userAvatar; */
           if (toDetail) {
                 return <Redirect to={{pathname:`/question/${question.id}`, state: {questiontype:questiontype}}} />    
             }
@@ -32,7 +38,7 @@ export class Question extends Component {
                 
                {(questiontype==='unanswered' && question!==undefined) &&  
                  (<Link to={`question/:${question.id}`}><div className='question-card'>
-                  <img className='avatar-image' src='' width='50px' height='60px' />
+                  <img className='avatar-image' src={avatarURL} width='50px' height='60px' />
                  <h3 className='author-label'>{question.author} Asks...</h3> 
                  <p></p>
                  <p></p>
@@ -65,11 +71,12 @@ export class Question extends Component {
 
 
 
-const mapStateToProps = ({questions}, {id}) => {
+const mapStateToProps = ({questions, users}, {id}) => {
     const question = questions[id];
     console.log(' question ' + question);
     return {
-      question
+      question,
+      users
     }
   }
 

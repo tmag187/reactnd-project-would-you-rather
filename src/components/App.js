@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { handleInitialUsers } from '../actions/sharedActions';
 import { connect } from 'react-redux';
+import InfoBar from './InfoBar';
 import  Signin  from './Signin';
 import  Questions from './Questions';
 import  AddQuestion from './AddQuestion';
@@ -14,11 +15,14 @@ class App extends Component {
   }
   render() {
   return (
+    <Router>
     <div className="App">
             <header className='App-header'>
                 Would you Rather...
             </header>
-      <Router>
+      
+      <InfoBar />
+      <div>
         <Switch>
             {/* <Route exact path='/' component={Signin} /> */}
             <Route exact path='/' component={Questions} />
@@ -26,18 +30,18 @@ class App extends Component {
             <Route exact path='/question/:id' component={QuestionDetails} />
             <Route exact path='/add' component={AddQuestion} />
         </Switch>
-      </Router>
+        </div>
     </div>
+    </Router>
   );
 }
 }
 
-const mapStateToProps = (state) => {
+
+const mapStateToProps = ({users}) => {
   return {
-    users:state.users
+    users
   }
 }
-
-
 
 export default connect(mapStateToProps)(App);

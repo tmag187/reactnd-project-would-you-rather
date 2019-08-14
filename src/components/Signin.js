@@ -7,7 +7,7 @@ import { setAuthedUser } from '../actions/authedUserActions';
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(' submitted ' + this.state.value);
+        console.log(' submitted >' + this.state.value);
         const { value } = this.state;
         this.props.dispatch(setAuthedUser(value));
         this.props.history.push('/');

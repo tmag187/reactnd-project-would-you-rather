@@ -24,8 +24,6 @@ class Questions extends Component {
         let vquestions2 = questions[id].optionTwo.votes.filter((vote) => {
             return (vote === authedUser)
         });
-        console.log(' vquestions ' + vquestions1);
-        console.log(' vquestions ' + vquestions2);
         if (vquestions2.length>0) {
             return true;
         }
@@ -52,9 +50,10 @@ class Questions extends Component {
         return (
             
             <React.Fragment>
-            {/* { <header className='user-header'>Welcome {authedUser}</header> } */}
-            <InfoBar />
-            <span><button onClick={this.handleAnsweredChange} value='unanswered'>Unanswered Questions</button><button onClick={this.handleAnsweredChange} value='answered'>Answered Questions</button></span>
+            <div className='answered-state-button-group' >
+                <button variant='secondary' onClick={this.handleAnsweredChange} value='unanswered'>Unanswered Questions</button>
+                <button variant='secondary' onClick={this.handleAnsweredChange} value='answered'>Answered Questions</button>
+                </div>
             {questionList === 'unanswered' &&
             <div>
                 {questionIds.map((id) => (

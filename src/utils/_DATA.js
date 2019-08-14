@@ -2,17 +2,17 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: ''
+    avatarURL: 'http://localhost:3000/img_avatar.png'
   },
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: ''
+    avatarURL: 'http://localhost:3000/img_avatar.png'
   },
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: ''
+    avatarURL: 'http://localhost:3000/img_avatar.png'
   }
 }
 
@@ -140,13 +140,13 @@ export function _saveQuestion (question) {
         [formattedQuestion.id]: formattedQuestion
       }
       
-      users = {
+      /* users = {
         ...users,
         [authedUser]: {
           ...users[authedUser],
           questions: users[authedUser].questions.concat([formattedQuestion.id])
-        }
-      }
+        } 
+      } */
 
       res(formattedQuestion)
     }, 1000)

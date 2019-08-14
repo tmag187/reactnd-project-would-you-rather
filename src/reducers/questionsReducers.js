@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, SET_QUESTION_ANSWER } from '../actions/questionsActions';
+import { RECEIVE_QUESTIONS, SET_QUESTION_ANSWER, ADD_QUESTION } from '../actions/questionsActions';
 const initialState = {};
 export default function questions(state = initialState, action) {
 switch (action.type) {
@@ -10,6 +10,12 @@ switch (action.type) {
     case SET_QUESTION_ANSWER:
         return {
              ...state
+        } 
+    case ADD_QUESTION:
+        let { question } = action;
+        return {
+            ...state,
+            [action.question.id]:question
         } 
     default:
         return {

@@ -7,6 +7,7 @@ import  Signin  from './Signin';
 import  Questions from './Questions';
 import  AddQuestion from './AddQuestion';
 import  QuestionDetails from './QuestionDetails';
+import Leaderboard from './Leaderboard';
 import '../App.css';
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
             <Route exact path='/signin' component={Signin} />
             <Route exact path='/question/:id' component={QuestionDetails} />
             <Route exact path='/add' component={AddQuestion} />
+            <Route exact path='/leaderboard' component={Leaderboard} />
         </Switch>
         </div>
     </div>

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { handleAnswerQuestion } from '../actions/questionsActions';
 import { Link, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-import  InfoBar from './InfoBar';
 
 
 export class QuestionDetails extends Component {

@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class InfoBar extends Component {
     render() {
         let { authedUser } = this.props;
-        authedUser = 'johndoe';
-        console.log(authedUser);
+     //   authedUser = 'johndoe';
+     let es = {};
+        console.log(authedUser.valueOf());
         return (
             <nav>
-                <div>
-                <ul>
-              {(authedUser!=='') ?  
-                (<li>
-                    <div className='user-header'><a href='#!'>Welcome {authedUser}</a><Link to='/signin'>Sign Out</Link></div>
-                </li>): null}  
-                </ul> 
-                </div>
+            {(authedUser!==es) &&
+                (<div className='infobar'>
+                <Link to='/' className='infobar-a'>Home</Link>
+                <Link to='/add' className='infobar-a'>Ask a Question</Link>
+                <Link to='/leaderboard' className='infobar-a'>Leaderboard</Link>               
+                <div className='infobar-label'>Welcome</div>
+                <Link to='/signin' className='infobar-a'>Sign Out</Link>
+                </div>)}
             </nav>
         )
     }

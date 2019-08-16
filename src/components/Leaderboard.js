@@ -15,7 +15,7 @@ class Leaderboard extends Component {
         let {userIds } = this.props;
         return (
             <div>
-                <h2>Leaderboard</h2>
+                <h2 className='score-card-header'>Leaderboard</h2>
                 {userIds.map((userid) => (
                  <ScoreDetails userid={userid} key={userid} />
                  ))}

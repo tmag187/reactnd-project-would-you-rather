@@ -163,9 +163,10 @@
 .answered-state-button-group button {
   margin-left:auto;
   margin-right:auto;
+  margin-top:10px;
   align-items:center;
   justify-content: center;
-  background-color: #4CAF50; /* Green background */
+  background-color:rgb(2, 199, 150);
   border: 1px solid green; /* Green border */
   color: white; /* White text */
   padding: 5px 24px; /* Some padding */
@@ -227,4 +228,86 @@
   font-size: 18px;
 }
 
+.score-card-header {
+  min-height: 4rem;
+  padding-top:30px;
+  padding: 10px 10 10 10;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  font-style: bold;
+  color: rgb(3, 3, 3);
+}
 
+.user-score-card-grid {
+  display:grid;
+  grid-template-areas:
+    'avatar header header header header header'
+    'avatar answered answered answered total total'
+    'avatar asked asked asked asked asked'
+    'avatar footer footer footer footer footer';
+  grid-gap: 10px;
+  padding: 10px;
+  
+  margin: 50px 50px 50px 50px;
+  background-color: rgb(181, 228, 247);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  border:5px;
+  border-color: black;
+  color: black;
+}
+
+.user-score-card-grid>div {
+  margin: 10px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 18px;
+}
+
+.header-score-card { grid-area: header; }
+.avatar-score-card { grid-area: avatar; }
+.answered-score-card { grid-area: answered; }
+.total-score-card { grid-area: total; }
+.asked-score-card { grid-area: asked; }
+.footer-score-card { grid-area: footer; }
+
+
+.poll-results-card-grid {
+  display:grid;
+  grid-template-areas:
+    'avatar header header header header header'
+    'avatar option1 option1 option1 total total'
+    'avatar option2 option2 option2 asked asked'
+    'avatar footer footer footer footer footer';
+  grid-gap: 10px;
+  padding: 10px;
+  
+  margin: 50px 50px 50px 50px;
+  background-color: rgb(181, 228, 247);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  border:5px;
+  border-color: black;
+  color: black;
+}
+
+.poll-results-card-grid>div {
+  margin: 10px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 18px;
+}
+
+.header-score-card { grid-area: header; }
+.avatar-score-card { grid-area: avatar; }
+.answered-score-card { grid-area: answered; }
+.total-score-card { grid-area: total; }
+.asked-score-card { grid-area: asked; }
+.footer-score-card { grid-area: footer; }

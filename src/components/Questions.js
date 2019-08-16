@@ -32,7 +32,7 @@ class Questions extends Component {
     }
 
     handleAnsweredChange = (e) => {
-        
+        console.log(' questiontype ' + e.target.value);
         this.setState({
             questionList:e.target.value
         });

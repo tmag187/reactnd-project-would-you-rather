@@ -17,11 +17,14 @@ export class Question extends Component {
         });       
     }
 
+    
+
     render() {
         const { question, questiontype, users } = this.props;
         const { toDetail } = this.state;
         let avatarURL = '';
           if (question!==undefined) {
+            console.log(' questiontype ' + questiontype);
           let { id, author  } = question;
           author = users[author];
         //   let { userAvatar }  = author;
@@ -71,12 +74,13 @@ export class Question extends Component {
 
 
 
-const mapStateToProps = ({questions, users}, {id}) => {
+const mapStateToProps = ({questions, users}, {id, questiontype}) => {
     const question = questions[id];
     console.log(' question ' + question);
     return {
       question,
-      users
+      users,
+      questiontype
     }
   }
 

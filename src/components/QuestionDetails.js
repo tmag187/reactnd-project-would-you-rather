@@ -36,13 +36,13 @@ export class QuestionDetails extends Component {
 
     render() {
         const { question, authedUser } = this.props;
-        let { questionDetails } = this.props.location.state.questiontype;
-        questionDetails = 'answered';
+        let { questionDetails } = this.props;
+        questionDetails = 'unanswered';
         console.log(' questiontype ' + this.props.location.state);
         const { toDetail } = this.state;
         if (question!==undefined) {
           const { id, author  } = question;
-          console.log(' prop question ' + question.id);
+        //  console.log(' prop question ' + question.id);
           const { selectedOption } = this.state;
           if (selectedOption === '')   {
             this.setState({selectedOption:'optionOne'});
@@ -69,18 +69,13 @@ export class QuestionDetails extends Component {
                  </div>)}
 
                  {(questionDetails==='answered' && question!==undefined) &&  
-                 (<div className='question-card'>
-                 <img className='avatar-image' src='' width='50px' height='60px' />
-                 <h3 className='author-label'>Added by {question.author}</h3> 
-                 <h4 className='answered-question-title'>Results:</h4> 
-                 <div>
-                 <span><label>{question.optionOne.text}</label>{(this.votedFor(question, 'optionOne') && (<h4 className='answered-question-voted-for-label'>Voted for this One</h4>))}</span>
-                 </div>
-                 <div>Votes: {question.optionOne.votes.length}</div>
-                 <div>
-                 <div><label>{question.optionTwo.text}</label>{(this.votedFor(question, 'optionTwo') && (<h4 className='answered-question-voted-for-label'>Voted for this One</h4>))}</div>
-                 </div>
-                 <div>Votes: {question.optionTwo.votes.length}</div>
+                 (<div className='poll-results-card-grid'>
+                 <img className='avatar-score-card' src='http://localhost:3000/img_avatar.png' width='50px' height='60px' />
+                 <div className='header-score-card'>Added by {question.author} Results:</div>
+                 <div className='option1-score-card'>{question.optionOne.text}{(this.votedFor(question, 'optionOne') && (<div>Voted for this One</div>))}</div>
+                 <div className='votes1-score-card'>Votes: {question.optionOne.votes.length}</div>
+                 <div className='option2-score-card'>{question.optionTwo.text}{(this.votedFor(question, 'optionTwo') && (<div>Voted for this One</div>))}</div>
+                 <div className='votes2-score-card'>Votes: {question.optionTwo.votes.length}</div>
                  </div>)}
                  
             </React.Fragment>
@@ -91,13 +86,14 @@ export class QuestionDetails extends Component {
 
 
 const mapStateToProps = ({questions, authedUser}, props) => {
-    const { id } = props.match.params;
+    const { id, questionDetails } = props.match.params;
     let question = questions[id];
     return {
         questions,
         question,
         id,
-        authedUser
+        authedUser,
+        questionDetails
     }
   }
 

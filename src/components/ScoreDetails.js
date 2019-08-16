@@ -13,16 +13,13 @@ import { connect } from 'react-redux';
         let total = 1;
         return (
             <div>                
-                 <div className='user-score-card'>
-                 <img className='avatar-image' src='' width='50px' height='60px' />
-                 <h3 className='author-label'>{userid}</h3> 
-                 <h4 className='answered-question-title'></h4> 
-                 <div>
-                 <div><div>Answered Questions :</div><div>{total}</div><span className='score-total-dot'><div className='score-dot-value'>{total*2}</div></span></div>
-                 </div>             
-                 <div>
-                 <span><label>Asked Questions :</label><div>{total}</div></span>
-                 </div>               
+                 <div className='user-score-card-grid'>
+                 <img className='avatar-image avatar-score-card' src='http://localhost:3000/img_avatar.png' width='70px' height='70px' />
+                 <div className='header-score-card'>{userid}</div>
+                 <div className='answered-score-card'>Answered Questions :{total}</div> 
+                 <div className='total-score-card'>Score<span className='score-total-dot'> <div className='score-dot-value'>{total*2}</div></span></div>             
+                 <div className='asked-score-card'>Asked Questions :{total}</div> 
+                 <div className='footer-score-card'></div>            
                  </div>
             </div>
         )

@@ -34,7 +34,7 @@
   font-style: bold;
 }
 
-.question-card {
+/* .question-card {
   background-color: rgb(181, 228, 247);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   min-height: 10rem;
@@ -50,7 +50,7 @@
 
 .question-card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+} */
 
 .user-score-card {
   background-color: rgb(181, 228, 247);
@@ -281,7 +281,9 @@
   grid-template-areas:
     'avatar header header header header header'
     'avatar option1 option1 option1 total total'
+    'avatar votes1 votes1 votes1 total total'
     'avatar option2 option2 option2 asked asked'
+    'avatar votes2 votes2 votes2 asked asked'
     'avatar footer footer footer footer footer';
   grid-gap: 10px;
   padding: 10px;
@@ -307,7 +309,62 @@
 
 .header-score-card { grid-area: header; }
 .avatar-score-card { grid-area: avatar; }
-.answered-score-card { grid-area: answered; }
+.option1-score-card { grid-area: option1; }
+.votes1-score-card { grid-area: votes1; }
 .total-score-card { grid-area: total; }
+.option2-score-card { grid-area: option2; }
+.votes2-score-card { grid-area: votes2; }
 .asked-score-card { grid-area: asked; }
 .footer-score-card { grid-area: footer; }
+
+.question-card {
+  display:grid;
+  grid-template-areas:
+    'avatar header header header header header'
+    'avatar answered answered answered total total'
+    'avatar asked asked asked asked asked'
+    'avatar footer footer footer footer footer';
+  grid-gap: 10px;
+  padding: 10px;
+  
+  margin: 50px 50px 50px 50px;
+  background-color: rgb(181, 228, 247);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  border:5px;
+  border-color: black;
+  color: black;
+  background-color: rgb(181, 228, 247);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  min-height: 10rem;
+  align-items: center;
+  justify-content: center;
+  margin: 80px 80px 80px 80px;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  border:5px;
+  border-color: black;
+  color: black;
+}
+
+.question-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.question-card-grid>div {
+    margin: 10px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 18px;
+  }
+  
+  .header-question-card { grid-area: header; }
+  .avatar-question-card { grid-area: avatar; }
+  .answered-question-card { grid-area: answered; }
+  .total-question-card { grid-area: total; }
+  .asked-question-card { grid-area: asked; }
+  .footer-question-card { grid-area: footer; }
+  

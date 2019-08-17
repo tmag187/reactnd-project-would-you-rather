@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { handleReceiveQuestions } from '../actions/questionsActions';
 import Question from './Question';
-import InfoBar from './InfoBar';
 import { connect } from 'react-redux';
  
 class Questions extends Component {
@@ -15,18 +14,17 @@ class Questions extends Component {
     votedFor = (id) => {
         let votedfor = false;
         const { authedUser, questions } = this.props;
-        let vquestions1 = questions[id].optionOne.votes.filter((vote) => {
+        votedfor = questions[id].optionOne.votes.some((vote) => {
                return (vote === authedUser)
         });
-        if (vquestions1.length > 0) {
-            return true;
+        if (votedfor===true) {
+            console.log(' vquestions ' + votedfor);
+            return votedfor;
         }
-        let vquestions2 = questions[id].optionTwo.votes.filter((vote) => {
+        votedfor = questions[id].optionTwo.votes.some((vote) => {
             return (vote === authedUser)
         });
-        if (vquestions2.length>0) {
-            return true;
-        }
+
         console.log(' vquestions ' + votedfor);
         return votedfor;
     }

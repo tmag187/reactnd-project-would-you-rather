@@ -24,25 +24,28 @@ export class QuestionDetails extends Component {
     votedFor = (question, option) => {
         let votedfor = false;
         const { authedUser } = this.props;
-        let vquestions1 = question[option].votes.filter((vote) => {
+        votedfor = question[option].votes.some((vote) => {
                return (vote === authedUser)
         });
-        if (vquestions1.length > 0) {
-            return true;
-        }
-        console.log(' vquestions ' + votedfor);
+        
+        console.log(' votedfor ' + votedfor);
         return votedfor;
+    }
+
+    static getDerivedStateFromProps(props, state) {
+   //     let { answered } = props.location.state.questiontype;
+        console.log(' redirect prop ' );
+        return null;
     }
 
     render() {
         const { question, authedUser } = this.props;
         let { questionDetails } = this.props;
         questionDetails = 'unanswered';
-        console.log(' questiontype ' + this.props.location.state);
+        console.log(' questiontype ' + this.props.location.state.questiontype);
+        let questionAnswered = this.props.location.state.questiontype;
         const { toDetail } = this.state;
         if (question!==undefined) {
-          const { id, author  } = question;
-        //  console.log(' prop question ' + question.id);
           const { selectedOption } = this.state;
           if (selectedOption === '')   {
             this.setState({selectedOption:'optionOne'});
@@ -52,9 +55,9 @@ export class QuestionDetails extends Component {
          
         return (
             <React.Fragment>              
-               {(questionDetails==='unanswered' && question!==undefined) &&  
+               {(!questionAnswered && question!==undefined) &&  
                  (<div className='question-card'>
-                 <img className='avatar-image' src='' width='50px' height='60px' />
+                 <img className='avatar-image' src='http://localhost:3000/img_avatar.png' width='50px' height='60px' />
                  <h3 className='author-label'>{question.author} Asks...</h3> 
                  <h4 className='title-label'>Would You Rather...</h4> 
                  <form>
@@ -68,7 +71,7 @@ export class QuestionDetails extends Component {
                  <button className='view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>Submit Answer</button>
                  </div>)}
 
-                 {(questionDetails==='answered' && question!==undefined) &&  
+                 {(questionAnswered && question!==undefined) &&  
                  (<div className='poll-results-card-grid'>
                  <img className='avatar-score-card' src='http://localhost:3000/img_avatar.png' width='50px' height='60px' />
                  <div className='header-score-card'>Added by {question.author} Results:</div>

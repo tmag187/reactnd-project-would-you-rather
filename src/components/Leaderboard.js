@@ -5,7 +5,16 @@ import ScoreDetails from './ScoreDetails';
 class Leaderboard extends Component {
 
     scoreInfo = () => {
-
+        let { users, questions } = this.props;
+        let results = {};
+        let id, qid;
+        for (id in users){
+            results[id] = id;
+            for (qid in questions) {
+                results[qid] = qid; 
+            }
+        }
+        this.setState({ results });
     }
 
     componentWillMount() {

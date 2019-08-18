@@ -14,16 +14,15 @@ export function handleReceiveQuestions() {
     return (dispatch) => {
         return _getQuestions()
         .then(questions => {
-            console.log('r questions '+ questions)
             dispatch(receiveQuestions(questions))
         })
     }
 }
 
-export function answerQuestion(qid) {
+export function answerQuestion(questions) {
     return {
         type:SET_QUESTION_ANSWER,
-        qid
+        questions
     }
 }
 
@@ -32,15 +31,15 @@ export function handleAnswerQuestion(authedUser, qid, answer) {
         return _saveQuestionAnswer({ authedUser, qid, answer })
         .then((result) => {
             console.log('answer added to questions ' + result)
-            dispatch(answerQuestion(qid))
+            dispatch(answerQuestion(result))
         })
     }
 }
 
-export function addQuestion(qid) {
+export function addQuestion(question) {
     return {
         type:ADD_QUESTION,
-        qid
+        question
     }
 }
 
@@ -49,7 +48,7 @@ export function handleAddQuestion(question) {
         return _saveQuestion({ question })
         .then((fquestion) => {
             console.log('question added to questions ' + fquestion)
-            dispatch(answerQuestion(fquestion))
+            dispatch(addQuestion(fquestion))
         })
     }
 }

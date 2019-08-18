@@ -50,7 +50,7 @@ export class Question extends Component {
           avatarURL = userAvatar; */
           if (toDetail) {
                 let answered = (this.props.questiontype === 'unanswered' ? false : true);
-                return <Redirect to={{pathname:`/question/${question.id}`, state: {questiontype:answered}}} />    
+                return <Redirect to={{pathname:`/question/${question.id}`, state: {questiontype:answered,  changeStatus:this.changeAnsweredStatus()}}} />
             }
         }      
         return (

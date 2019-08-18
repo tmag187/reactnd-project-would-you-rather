@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
  class ScoreDetails extends Component {
     render() {
-        let { userid } = this.props;
+        let { userid, results, user } = this.props;
 
         /* if (question!==undefined) {
             const { id, author  } = question;
@@ -11,14 +11,17 @@ import { connect } from 'react-redux';
           }    */
 
         let total = 1;
+        console.log(' res ' + results[userid].answered);
+        let answered = results[userid].answered;
+        let asked = results[userid].asked;
         return (
             <div>                
                  <div className='user-score-card-grid'>
                  <img className='avatar-image avatar-score-card' src='http://localhost:3000/img_avatar.png' width='70px' height='70px' />
                  <div className='header-score-card'>{userid}</div>
-                 <div className='answered-score-card'>Answered Questions :{total}</div> 
-                 <div className='total-score-card'>Score<span className='score-total-dot'> <div className='score-dot-value'>{total*2}</div></span></div>             
-                 <div className='asked-score-card'>Asked Questions :{total}</div> 
+                 <div className='answered-score-card'>Answered Questions :{answered}</div> 
+                 <div className='total-score-card'>Score<span className='score-total-dot'> <div className='score-dot-value'>{answered+asked}</div></span></div>             
+                 <div className='asked-score-card'>Asked Questions :{asked}</div> 
                  <div className='footer-score-card'></div>            
                  </div>
             </div>

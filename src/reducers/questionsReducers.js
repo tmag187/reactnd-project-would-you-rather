@@ -9,7 +9,8 @@ switch (action.type) {
        } 
     case SET_QUESTION_ANSWER:
         return {
-             ...state
+             ...state,
+             ...action.questions
         } 
     case ADD_QUESTION:
         let { question } = action;

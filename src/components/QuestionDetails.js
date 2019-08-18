@@ -1,19 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { handleAnswerQuestion } from '../actions/questionsActions';
+import { votedFor } from '../utils/_DATA';
 import { Link, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 
 export class QuestionDetails extends Component {
     state = {
-        selectedOption:''
+        selectedOption:'',
+        submittedAnswer:false
     }
     handleSubmit = (e, id) => {
         e.preventDefault();
-        console.log(' submitted ' + id);
+        const { authedUser } = this.props;
         const { selectedOption }  = this.state;
-        this.props.dispatch(handleAnswerQuestion('sarahedo', id, selectedOption));
+        console.log(' submitted ' + id);
+        console.log(' submitted authuser ' + authedUser);
+        console.log(' selected option ' + selectedOption);
+        
+        this.props.dispatch(handleAnswerQuestion(authedUser, id, selectedOption));
+        this.setState({ submittedAnswer:true });
     }
 
     handleChange = (e) => {
@@ -21,16 +28,7 @@ export class QuestionDetails extends Component {
         console.log(' selected ' + e.target.value);
     }
 
-    votedFor = (question, option) => {
-        let votedfor = false;
-        const { authedUser } = this.props;
-        votedfor = question[option].votes.some((vote) => {
-               return (vote === authedUser)
-        });
         
-        console.log(' votedfor ' + votedfor);
-        return votedfor;
-    }
 
     static getDerivedStateFromProps(props, state) {
    //     let { answered } = props.location.state.questiontype;
@@ -75,9 +73,9 @@ export class QuestionDetails extends Component {
                  (<div className='poll-results-card-grid'>
                  <img className='avatar-score-card' src='http://localhost:3000/img_avatar.png' width='50px' height='60px' />
                  <div className='header-score-card'>Added by {question.author} Results:</div>
-                 <div className='option1-score-card'>{question.optionOne.text}{(this.votedFor(question, 'optionOne') && (<div>Voted for this One</div>))}</div>
+                 <div className='option1-score-card'>{question.optionOne.text}{(votedFor(question, 'optionOne', authedUser) && (<div>Voted for this One</div>))}</div>
                  <div className='votes1-score-card'>Votes: {question.optionOne.votes.length}</div>
-                 <div className='option2-score-card'>{question.optionTwo.text}{(this.votedFor(question, 'optionTwo') && (<div>Voted for this One</div>))}</div>
+                 <div className='option2-score-card'>{question.optionTwo.text}{(votedFor(question, 'optionTwo', authedUser) && (<div>Voted for this One</div>))}</div>
                  <div className='votes2-score-card'>Votes: {question.optionTwo.votes.length}</div>
                  </div>)}
                  
@@ -101,6 +99,7 @@ const mapStateToProps = ({questions, authedUser}, props) => {
   }
 
   export default connect(mapStateToProps)(QuestionDetails);
+  
 
  
 

@@ -153,10 +153,20 @@ export function _saveQuestion (question) {
   })
 }
 
+export function votedFor(question, option, user) {
+  let votedfor = false;
+  votedfor = question[option].votes.some((vote) => {
+         return (vote === user)
+  });
+  
+  console.log(' votedfor ' + votedfor);
+  return votedfor;
+}
+
 export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      users = {
+     /*  users = {
         ...users,
         [authedUser]: {
           ...users[authedUser],
@@ -165,7 +175,7 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
             [qid]: answer
           }
         }
-      }
+      } */
 
       questions = {
         ...questions,
@@ -178,7 +188,7 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
         }
       }
 
-      res()
+      res(questions)
     }, 500)
   })
 }

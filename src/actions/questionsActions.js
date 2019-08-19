@@ -44,8 +44,9 @@ export function addQuestion(question) {
 }
 
 export function handleAddQuestion(question) {
+    console.log(' ^^^ action author of question ' + question.author)
     return (dispatch) => {
-        return _saveQuestion({ question })
+        return _saveQuestion({author:question.author, optionOneText:question.optionOneText, optionTwoText:question.optionTwoText})
         .then((fquestion) => {
             console.log('question added to questions ' + fquestion)
             dispatch(addQuestion(fquestion))

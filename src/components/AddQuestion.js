@@ -18,7 +18,7 @@ import { Link, Redirect } from 'react-router-dom';
         let { optionOneText, optionTwoText } = this.state;
         console.log('submit' + optionTwoText);
         console.log('user:' + authedUser);
-        let unformattedQuestion = { optionOneText, optionTwoText, authedUser};
+        let unformattedQuestion = { optionOneText:optionOneText, optionTwoText:optionTwoText, author:authedUser};
         this.props.dispatch(handleAddQuestion(unformattedQuestion));
       //  this.props.history.push('/');
         this.setState({toHome:'true'});

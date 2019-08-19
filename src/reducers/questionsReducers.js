@@ -14,6 +14,7 @@ switch (action.type) {
         } 
     case ADD_QUESTION:
         let { question } = action;
+        console.log(' question reducer ' + question);
         return {
             ...state,
             [action.question.id]:question

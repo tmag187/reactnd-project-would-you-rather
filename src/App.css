@@ -83,17 +83,43 @@
   justify-content: center;
 }
 
+.add-question-header {
+  font-size: 22px;
+  padding-top: 1rem;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.add-question-label {
+  font-size: 20px;
+  padding-top: 1rem;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .add-question-input {
-  background-color: rgb(216, 216, 216);
-  min-height: 10rem;
+
+  background-color: white;
+  min-height: 5rem;
   justify-content: top;
   margin: 10px 10px 10px 10px;
   font-size: 18px;
   width:80%;
   font-family: Arial, Helvetica, sans-serif;
-  border:5px;
-  border-color: black;
+  border:1px;
+  border-style: solid;
+  border-color: gray;
   color: black;
+}
+
+.add-question-input:focus {
+  border-color:black;
+  background-color: rgb(181, 228, 247);
+  border:2px;
 }
 
 .author-label {
@@ -124,16 +150,23 @@
 }
 
 .view-button {
-  position: relative;
-  top:40px;
-  font-size: 14px;
+  align-items: left;
+  justify-content: left;
+  font-size:16px;
+  background-color:rgb(2, 199, 150);
+  border: none; 
+  margin-top: 10px;
+  color: white;
 }
 
 .submit-button {
   align-items: left;
   justify-content: left;
-  position: relative;
-  font-size:20px;
+  font-size:16px;
+  background-color:rgb(2, 199, 150);
+  border: none; 
+  margin-top: 10px;
+  color: white;
 }
 
 .avatar-image {
@@ -207,6 +240,10 @@
 .infobar a.active {
   background-color:#4CAF50;
   color:white;
+}
+
+.danger-text {
+  color:red;
 }
 
 .infobar-label {
@@ -286,7 +323,6 @@
     'avatar votes2 votes2 votes2 asked asked'
     'avatar footer footer footer footer footer';
   grid-gap: 10px;
-  padding: 10px;
   
   margin: 50px 50px 50px 50px;
   background-color: rgb(181, 228, 247);
@@ -301,21 +337,19 @@
 }
 
 .poll-results-card-grid>div {
-  margin: 10px;
   text-align: center;
-  line-height: 20px;
-  font-size: 18px;
+  font-size: 14px;
 }
 
-.header-score-card { grid-area: header; }
-.avatar-score-card { grid-area: avatar; }
-.option1-score-card { grid-area: option1; }
-.votes1-score-card { grid-area: votes1; }
-.total-score-card { grid-area: total; }
-.option2-score-card { grid-area: option2; }
-.votes2-score-card { grid-area: votes2; }
-.asked-score-card { grid-area: asked; }
-.footer-score-card { grid-area: footer; }
+.header-results-card { grid-area: header; }
+.avatar-results-card { grid-area: avatar; }
+.option1-results-card { grid-area: option1; }
+.votes1-results-card { grid-area: votes1; }
+.total-results-card { grid-area: total; }
+.option2-results-card { grid-area: option2; }
+.votes2-results-card { grid-area: votes2; }
+.asked-results-card { grid-area: asked; }
+.footer-results-card { grid-area: footer; }
 
 .question-card {
   display:grid;
@@ -325,7 +359,6 @@
     'avatar asked asked asked asked asked'
     'avatar footer footer footer footer footer';
   grid-gap: 10px;
-  padding: 10px;
   
   margin: 50px 50px 50px 50px;
   background-color: rgb(181, 228, 247);
@@ -342,11 +375,6 @@
   min-height: 10rem;
   align-items: center;
   justify-content: center;
-  margin: 80px 80px 80px 80px;
-  font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
-  border:5px;
-  border-color: black;
   color: black;
 }
 
@@ -355,9 +383,7 @@
 }
 
 .question-card-grid>div {
-    margin: 10px;
     text-align: center;
-    line-height: 20px;
     font-size: 18px;
   }
   

@@ -8,6 +8,7 @@ import  Questions from './Questions';
 import  AddQuestion from './AddQuestion';
 import  QuestionDetails from './QuestionDetails';
 import Leaderboard from './Leaderboard';
+import NotFound from './pages/NotFound';
 import '../App.css';
 
 class App extends Component {
@@ -20,17 +21,16 @@ class App extends Component {
     <div className="App">
             <header className='App-header'>
                 Would you Rather...
-            </header>
-      
+            </header>     
       <InfoBar />
       <div>
         <Switch>
-            {/* <Route exact path='/' component={Signin} /> */}
-            <Route exact path='/' component={Questions} />
             <Route exact path='/signin' component={Signin} />
+            <Route exact path='/' component={Questions} />        
             <Route exact path='/question/:id' component={QuestionDetails} />
             <Route exact path='/add' component={AddQuestion} />
             <Route exact path='/leaderboard' component={Leaderboard} />
+            <Route component={NotFound} />
         </Switch>
         </div>
     </div>

@@ -55,7 +55,7 @@ export class QuestionDetails extends Component {
             <React.Fragment>              
                {(!questionAnswered && question!==undefined) &&  
                  (<div className='question-card'>
-                 <img className='avatar-image' src='http://localhost:3000/img_avatar.png' width='50px' height='60px' />
+                 <img className='avatar-image avatar-question-card' src='http://localhost:3000/img_avatar.png' width='70px' height='70px' />
                  <h3 className='author-label'>{question.author} Asks...</h3> 
                  <h4 className='title-label'>Would You Rather...</h4> 
                  <form>
@@ -71,12 +71,12 @@ export class QuestionDetails extends Component {
 
                  {(questionAnswered && question!==undefined) &&  
                  (<div className='poll-results-card-grid'>
-                 <img className='avatar-score-card' src='http://localhost:3000/img_avatar.png' width='50px' height='60px' />
-                 <div className='header-score-card'>Added by {question.author} Results:</div>
-                 <div className='option1-score-card'>{question.optionOne.text}{(votedFor(question, 'optionOne', authedUser) && (<div>Voted for this One</div>))}</div>
-                 <div className='votes1-score-card'>Votes: {question.optionOne.votes.length}</div>
-                 <div className='option2-score-card'>{question.optionTwo.text}{(votedFor(question, 'optionTwo', authedUser) && (<div>Voted for this One</div>))}</div>
-                 <div className='votes2-score-card'>Votes: {question.optionTwo.votes.length}</div>
+                 <img className='avatar-image avatar-results-card' src='http://localhost:3000/img_avatar.png' width='70px' height='70px' />
+                 <div className='header-results-card'>Added by {question.author} Results:</div>
+                 <div className='option1-results-card'>{question.optionOne.text}{(votedFor(question, 'optionOne', authedUser) && (<div>Voted for this One</div>))}</div>
+                 <div className='votes1-results-card'>Votes: {question.optionOne.votes.length}</div>
+                 <div className='option2-results-card'>{question.optionTwo.text}{(votedFor(question, 'optionTwo', authedUser) && (<div>Voted for this One</div>))}</div>
+                 <div className='votes2-results-card'>Votes: {question.optionTwo.votes.length}</div>
                  </div>)}
                  
             </React.Fragment>

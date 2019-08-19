@@ -7,6 +7,9 @@ class InfoBar extends Component {
         let { authedUser } = this.props;
      //   authedUser = 'johndoe';
      let es = {};
+        if (authedUser.valueOf() === es.valueOf()) {
+            authedUser = '';
+        } 
         console.log(authedUser.valueOf());
         return (
             <nav>
@@ -15,7 +18,7 @@ class InfoBar extends Component {
                 <Link to='/' className='infobar-a'>Home</Link>
                 <Link to='/add' className='infobar-a'>Ask a Question</Link>
                 <Link to='/leaderboard' className='infobar-a'>Leaderboard</Link>               
-                <div className='infobar-label'>Welcome</div>
+                <div className='infobar-label'>Welcome </div>
                 <Link to='/signin' className='infobar-a'>Sign Out</Link>
                 </div>)}
             </nav>

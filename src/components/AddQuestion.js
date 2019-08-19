@@ -12,16 +12,27 @@ import { Link, Redirect } from 'react-router-dom';
         toHome:false
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = (e) => {        
         e.preventDefault();
-        let { authedUser } = this.props;
-        let { optionOneText, optionTwoText } = this.state;
-        console.log('submit' + optionTwoText);
-        console.log('user:' + authedUser);
-        let unformattedQuestion = { optionOneText:optionOneText, optionTwoText:optionTwoText, author:authedUser};
-        this.props.dispatch(handleAddQuestion(unformattedQuestion));
-      //  this.props.history.push('/');
-        this.setState({toHome:'true'});
+        const { authedUser } = this.props;
+        const { optionOneText, optionTwoText } = this.state;
+        if ((optionOneText === "" || optionTwoText === "")) {
+          alert(
+            " Both answers must be entered to submit the question."
+          );
+        } else {
+          console.log("submit >--" + optionOneText);
+          console.log("submit >--" + optionTwoText);
+          console.log("user:" + authedUser);
+          let unformattedQuestion = {
+            optionOneText: optionOneText,
+            optionTwoText: optionTwoText,
+            author: authedUser
+          };
+          this.props.dispatch(handleAddQuestion(unformattedQuestion));
+          //  this.props.history.push('/');
+          this.setState({ toHome: "true" });
+        }
     }
 
     handleChange = (e) => {
@@ -35,12 +46,12 @@ import { Link, Redirect } from 'react-router-dom';
         return (
             
             <React.Fragment>
-                <h2>Add a Question</h2>
+                <div className='add-question-header'>Add a Question</div>
                  <form onSubmit={this.handleSubmit} >
-                 <h3>Answer 1</h3>      
-                <input className='add-question-input' name='optionOneText' onChange={this.handleChange} />
-                <h3>Answer 2</h3> 
-                <input className='add-question-input' name='optionTwoText' onChange={this.handleChange} />
+                 <div className='add-question-label'>Answer 1</div>      
+                <textarea className='add-question-input' value={this.state.optionOneText} name='optionOneText' onChange={this.handleChange} />
+                <div className='add-question-label'>Answer 2</div> 
+                <textarea className='add-question-input' name='optionTwoText' value={this.state.optionTwoText} onChange={this.handleChange} />
                 <br />
                 <button className='btn submit-button' value='Submit' type='submit'>Submit</button>
                 </form>

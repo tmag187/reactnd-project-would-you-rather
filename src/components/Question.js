@@ -82,7 +82,7 @@ export class Question extends Component {
 
                  {(questiontype==='answered' && question!==undefined) &&  
                  (<Link to={`question/:${question.id}`}><div className='question-card'>
-                  <img className='avatar-image avatar-question-card' src='http://localhost:3000/img_avatar.png' width='70px' height='70px' />
+                  <img className='avatar-image avatar-question-card' src={avatar} width='70px' height='70px' />
                  <div className='header-question-card'>{question.author} Asks...</div> 
                  <div className='answered-question-card'>Would You Rather...</div> 
                  <div className='asked-question-card'>...{question.optionOne.text}...</div>

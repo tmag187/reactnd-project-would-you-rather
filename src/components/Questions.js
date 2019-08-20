@@ -55,14 +55,14 @@ class Questions extends Component {
             {questionList === 'unanswered' &&
             <div>
                 {questionIds.map((id) => (
-                 ((questions[id].author!==authedUser && !this.votedFor(id)) && <Question id={id} key={id} questiontype={questionList} />)
+                 ((!this.votedFor(id)) && <Question id={id} key={id} questiontype={questionList} />)
                  ))}
             </div>
             }
             {questionList === 'answered' &&
             <div>
                 {questionIds.map((id) => (
-                 ((questions[id].author!==authedUser && this.votedFor(id)) && <Question id={id} key={id} questiontype={questionList} />)
+                 ((this.votedFor(id)) && <Question id={id} key={id} questiontype={questionList} />)
                  ))}
             </div>
             }

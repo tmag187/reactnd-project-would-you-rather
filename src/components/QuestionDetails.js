@@ -38,6 +38,7 @@ export class QuestionDetails extends Component {
 
     render() {
         const { question, authedUser, users } = this.props;
+        const { submittedAnswer } = this.state;
         let { questionDetails } = this.props;
         questionDetails = 'unanswered';
         console.log(' questiontype ' + this.props.location.state.questiontype);
@@ -45,6 +46,7 @@ export class QuestionDetails extends Component {
         let questionAnswered = this.props.location.state.questiontype;
         const { toDetail } = this.state;
         let avatar = '';
+        let q1answers, q2answers, totalResponses, perq1, perq2;
         if (question!==undefined) {
           avatar = users[question.author].avatarURL;
           console.log(' -->avatar '+ avatar);
@@ -52,35 +54,36 @@ export class QuestionDetails extends Component {
           if (selectedOption === '')   {
             this.setState({selectedOption:'optionOne'});
           }
+          q1answers = question.optionOne.votes.length;
+          q2answers = question.optionTwo.votes.length;
+          totalResponses = q1answers + q2answers;
+          perq1 = (q1answers / totalResponses) * 100;
+          perq2 = (q2answers / totalResponses) * 100;
         }   
-        
          
         return (
             <React.Fragment>              
-               {(!questionAnswered && question!==undefined) &&  
+               {(!questionAnswered && question!==undefined && !submittedAnswer) &&  
                  (<div className='question-card'>
                  <img className='avatar-image avatar-question-card' src={avatar} width='70px' height='70px' />
-                 <div className='header-question-card author-label'>{question.author} Asks...</div> 
-                 <div className='header-question-card title-label'>Would You Rather...</div> 
-                 <form>
-                 <div className='answered-question-card radio-label'>
-                 <label><input type='radio' name='answer'  onChange={this.handleChange} value='optionOne' checked={this.state.selectedOption === 'optionOne'} />{question.optionOne.text}</label>
+                 <div className='header-question-card'>{question.author} Asks...</div> 
+                 <div className='header2-question-card'>Would You Rather...</div> 
+                 <div className='answered-question-card'>
+                 <input type='radio' name='answer'  onChange={this.handleChange} value='optionOne' checked={this.state.selectedOption === 'optionOne'} /> {question.optionOne.text}</div>
+                 <div className='asked-question-card'>
+                 <input type='radio' name='answer' onChange={this.handleChange} value='optionTwo' checked={this.state.selectedOption === 'optionTwo'} /> {question.optionTwo.text}
                  </div>
-                 <div>
-                 <label className='asked-question-card radio-label'><input type='radio' name='answer' onChange={this.handleChange} value='optionTwo' checked={this.state.selectedOption === 'optionTwo'} />{question.optionTwo.text}</label>
-                 </div>
-                 </form>
-                 <button className='view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>Submit Answer</button>
+                 <button className='footer-question-card view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>Submit Answer</button>
                  </div>)}
 
-                 {(questionAnswered && question!==undefined) &&  
+                 {((questionAnswered && question!==undefined) || submittedAnswer) &&  
                  (<div className='poll-results-card-grid'>
                  <img className='avatar-image avatar-results-card' src={avatar} width='70px' height='70px' />
                  <div className='header-results-card'>Added by {question.author} Results:</div>
                  <div className='option1-results-card'>{question.optionOne.text}{(votedFor(question, 'optionOne', authedUser) && (<div>Voted for this One</div>))}</div>
-                 <div className='votes1-results-card'>Votes: {question.optionOne.votes.length}</div>
+                 <div className='votes1-results-card'>Votes: {q1answers} out of {totalResponses} votes | {perq1} %</div>
                  <div className='option2-results-card'>{question.optionTwo.text}{(votedFor(question, 'optionTwo', authedUser) && (<div>Voted for this One</div>))}</div>
-                 <div className='votes2-results-card'>Votes: {question.optionTwo.votes.length}</div>
+                 <div className='votes2-results-card'>Votes: {q2answers} out of {totalResponses} votes | {perq2} %</div>
                  </div>)}
                  
             </React.Fragment>

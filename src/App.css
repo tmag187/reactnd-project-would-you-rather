@@ -354,7 +354,7 @@
 .question-card {
   display:grid;
   grid-template-areas:
-    'avatar header header header header header'
+    '. header header header header header'
     'avatar answered answered answered total total'
     'avatar asked asked asked asked asked'
     'avatar footer footer footer footer footer';

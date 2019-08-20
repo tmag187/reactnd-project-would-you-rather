@@ -34,13 +34,13 @@ class Leaderboard extends Component {
         this.scoreInfo();
     }
     render() {
-        let {userIds } = this.props;
+        let {userIds, users } = this.props;
         let { results } = this.state;
         return (
             <div>
                 <h2 className='score-card-header'>Leaderboard</h2>
                 {userIds.map((userid) => (
-                 <ScoreDetails userid={userid} key={userid} results={results} />
+                 <ScoreDetails userid={userid} key={userid} results={results} avatar={users[userid].avatarURL} />
                  ))}
             </div>
         )

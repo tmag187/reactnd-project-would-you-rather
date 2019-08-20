@@ -2,16 +2,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUserActions';
  class Signin extends Component {
-    state = {
+     constructor(props){
+        super(props);
+
+        this.state = {
         value:''
+        }
     }
-    handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(' submitted >' + this.state.value);
-        const { value } = this.state;
+
+    handleSubmit = e => {
+      e.preventDefault();
+      console.log(" submitted >" + this.state.value);
+      if (this.state.value === "") {
+        let { userIds } = this.props;
+        let user = userIds[0];
+        this.setState({ value: user });
+        console.log(" user set @>" + user);
+        this.props.dispatch(setAuthedUser(user));
+        this.props.history.push("/");
+      } else {
+        const value = this.state.value;
+        console.log(" submitted >" + value);
         this.props.dispatch(setAuthedUser(value));
-        this.props.history.push('/');
-    }
+        this.props.history.push("/");
+      }
+    };
 
     handleChange = (e) => {
         this.setState({value:e.target.value});

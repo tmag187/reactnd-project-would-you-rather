@@ -37,13 +37,17 @@ export class QuestionDetails extends Component {
     }
 
     render() {
-        const { question, authedUser } = this.props;
+        const { question, authedUser, users } = this.props;
         let { questionDetails } = this.props;
         questionDetails = 'unanswered';
         console.log(' questiontype ' + this.props.location.state.questiontype);
+       // console.log(' -->avatar '+ avatar);
         let questionAnswered = this.props.location.state.questiontype;
         const { toDetail } = this.state;
+        let avatar = '';
         if (question!==undefined) {
+          avatar = users[question.author].avatarURL;
+          console.log(' -->avatar '+ avatar);
           const { selectedOption } = this.state;
           if (selectedOption === '')   {
             this.setState({selectedOption:'optionOne'});
@@ -55,15 +59,15 @@ export class QuestionDetails extends Component {
             <React.Fragment>              
                {(!questionAnswered && question!==undefined) &&  
                  (<div className='question-card'>
-                 <img className='avatar-image avatar-question-card' src='http://localhost:3000/img_avatar.png' width='70px' height='70px' />
-                 <h3 className='author-label'>{question.author} Asks...</h3> 
-                 <h4 className='title-label'>Would You Rather...</h4> 
+                 <img className='avatar-image avatar-question-card' src={avatar} width='70px' height='70px' />
+                 <div className='header-question-card author-label'>{question.author} Asks...</div> 
+                 <div className='header-question-card title-label'>Would You Rather...</div> 
                  <form>
-                 <div className='radio-label'>
+                 <div className='answered-question-card radio-label'>
                  <label><input type='radio' name='answer'  onChange={this.handleChange} value='optionOne' checked={this.state.selectedOption === 'optionOne'} />{question.optionOne.text}</label>
                  </div>
                  <div>
-                 <label className='radio-label'><input type='radio' name='answer' onChange={this.handleChange} value='optionTwo' checked={this.state.selectedOption === 'optionTwo'} />{question.optionTwo.text}</label>
+                 <label className='asked-question-card radio-label'><input type='radio' name='answer' onChange={this.handleChange} value='optionTwo' checked={this.state.selectedOption === 'optionTwo'} />{question.optionTwo.text}</label>
                  </div>
                  </form>
                  <button className='view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>Submit Answer</button>
@@ -71,7 +75,7 @@ export class QuestionDetails extends Component {
 
                  {(questionAnswered && question!==undefined) &&  
                  (<div className='poll-results-card-grid'>
-                 <img className='avatar-image avatar-results-card' src='http://localhost:3000/img_avatar.png' width='70px' height='70px' />
+                 <img className='avatar-image avatar-results-card' src={avatar} width='70px' height='70px' />
                  <div className='header-results-card'>Added by {question.author} Results:</div>
                  <div className='option1-results-card'>{question.optionOne.text}{(votedFor(question, 'optionOne', authedUser) && (<div>Voted for this One</div>))}</div>
                  <div className='votes1-results-card'>Votes: {question.optionOne.votes.length}</div>
@@ -86,7 +90,7 @@ export class QuestionDetails extends Component {
 
 
 
-const mapStateToProps = ({questions, authedUser}, props) => {
+const mapStateToProps = ({questions, authedUser, users}, props) => {
     const { id, questionDetails } = props.match.params;
     let question = questions[id];
     return {
@@ -94,7 +98,8 @@ const mapStateToProps = ({questions, authedUser}, props) => {
         question,
         id,
         authedUser,
-        questionDetails
+        questionDetails,
+        users
     }
   }
 

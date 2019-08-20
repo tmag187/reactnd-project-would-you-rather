@@ -38,27 +38,41 @@ export class Question extends Component {
     render() {
         const { question, questiontype, users } = this.props;
         const { toDetail } = this.state;
-        let avatarURL = '';
-          if (question!==undefined) {
-            console.log(' questiontype ' + questiontype);
-          let { id, author  } = question;
-          author = users[author];
-        //   let { userAvatar }  = author;
-          console.log(' prop author ' + author);
-         /*  userAvatar = users[author].avatarURL; */
-         /*  console.log(' prop userAvatar ' + userAvatar); 
-          avatarURL = userAvatar; */
+        let avatar = "";
+        if (question !== undefined) {
+          console.log(" questiontype " + questiontype);
+          let { id, author } = question;
+          
+          console.log(" prop author " + author);
+          //  console.log(' prop avatar ' + avatar);
+          /*  userAvatar = users[author].avatarURL; */
+          if (users !== undefined) {
+            let avatarUser = users[author];
+            avatar = avatarUser['avatarURL'];
+            console.log(" -->avatar " + avatar); 
+          }
           if (toDetail) {
-                let answered = (this.props.questiontype === 'unanswered' ? false : true);
-                return <Redirect to={{pathname:`/question/${question.id}`, state: {questiontype:answered,  changeStatus:this.changeAnsweredStatus()}}} />
-            }
+            let answered =
+              this.props.questiontype === "unanswered" ? false : true;
+            return (
+              <Redirect
+                to={{
+                  pathname: `/question/${question.id}`,
+                  state: {
+                    questiontype: answered,
+                    changeStatus: this.changeAnsweredStatus()
+                  }
+                }}
+              />
+            );
+          }
         }      
         return (
             <React.Fragment>               
                 
                {(questiontype==='unanswered' && question!==undefined) &&  
                  (<Link to={`question/:${question.id}`}><div className='question-card'>
-                  <img className='avatar-question-card' src='http://localhost:3000/img_avatar.png' width='50px' height='60px' />
+                  <img className='avatar-image avatar-question-card' src={avatar} width='70px' height='70px' />
                  <div className='header-question-card'>{question.author} Asks...</div> 
                  <div className='answered-question-card'>Would You Rather...</div> 
                  <div className='asked-question-card'>...{question.optionOne.text}...</div>
@@ -68,10 +82,10 @@ export class Question extends Component {
 
                  {(questiontype==='answered' && question!==undefined) &&  
                  (<Link to={`question/:${question.id}`}><div className='question-card'>
-                  <img className='avatar-question-card' src='http://localhost:3000/img_avatar.png' width='50px' height='60px' />
-                 <div className='header-question-card author-label'>{question.author} Asks...</div> 
-                 <div className='answered-question-card title-label'>Would You Rather...</div> 
-                 <div className='asked-question-card question-label'>...{question.optionOne.text}...</div>
+                  <img className='avatar-image avatar-question-card' src='http://localhost:3000/img_avatar.png' width='70px' height='70px' />
+                 <div className='header-question-card'>{question.author} Asks...</div> 
+                 <div className='answered-question-card'>Would You Rather...</div> 
+                 <div className='asked-question-card'>...{question.optionOne.text}...</div>
                  <div className='footer-question-card'><button className='view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>View Poll</button></div>
                  </div>
                  </Link>)}

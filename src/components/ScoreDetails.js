@@ -21,7 +21,7 @@ import { connect } from 'react-redux';
         return (
             <div>                
                  <div className='user-score-card-grid'>
-                 <img className='avatar-image avatar-score-card' src={avatar} width='70px' height='70px' />
+                 <img className='avatar-image avatar-score-card' src={avatar} alt='user avatar' width='70px' height='70px' />
                  <div className='header-score-card'>{userid}</div>
                  <div className='answered-score-card'>Answered Questions :{answered}</div> 
                  <div className='total-score-card'>Score<span className='score-total-dot'> <div className='score-dot-value'>{answered+asked}</div></span></div>             

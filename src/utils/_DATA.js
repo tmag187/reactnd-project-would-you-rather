@@ -12,7 +12,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: 'http://localhost:3000/img_avatar.png'
+    avatarURL: 'http://localhost:3000/avatar_johndoe.png'
   }
 }
 

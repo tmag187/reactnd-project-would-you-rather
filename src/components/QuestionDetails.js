@@ -57,15 +57,15 @@ export class QuestionDetails extends Component {
           q1answers = question.optionOne.votes.length;
           q2answers = question.optionTwo.votes.length;
           totalResponses = q1answers + q2answers;
-          perq1 = (q1answers / totalResponses) * 100;
-          perq2 = (q2answers / totalResponses) * 100;
+          perq1 = ((q1answers / totalResponses) * 100).toFixed(1);
+          perq2 = ((q2answers / totalResponses) * 100).toFixed(1);
         }   
          
         return (
             <React.Fragment>              
                {(!questionAnswered && question!==undefined && !submittedAnswer) &&  
                  (<div className='question-card'>
-                 <img className='avatar-image avatar-question-card' src={avatar} width='70px' height='70px' />
+                 <img className='avatar-image avatar-question-card' src={avatar} alt='user avatar' width='70px' height='70px' />
                  <div className='header-question-card'>{question.author} Asks...</div> 
                  <div className='header2-question-card'>Would You Rather...</div> 
                  <div className='answered-question-card'>
@@ -78,11 +78,11 @@ export class QuestionDetails extends Component {
 
                  {((questionAnswered && question!==undefined) || submittedAnswer) &&  
                  (<div className='poll-results-card-grid'>
-                 <img className='avatar-image avatar-results-card' src={avatar} width='70px' height='70px' />
+                 <img className='avatar-image avatar-results-card' src={avatar} alt='user avatar' width='70px' height='70px' />
                  <div className='header-results-card'>Added by {question.author} Results:</div>
-                 <div className='option1-results-card'>{question.optionOne.text}{(votedFor(question, 'optionOne', authedUser) && (<div>Voted for this One</div>))}</div>
+                 <div className='option1-results-card'>{question.optionOne.text}{(votedFor(question, 'optionOne', authedUser) && (<div><div className='voted-for-dot'>Voted for this One</div></div>))}</div>
                  <div className='votes1-results-card'>Votes: {q1answers} out of {totalResponses} votes | {perq1} %</div>
-                 <div className='option2-results-card'>{question.optionTwo.text}{(votedFor(question, 'optionTwo', authedUser) && (<div>Voted for this One</div>))}</div>
+                 <div className='option2-results-card'>{question.optionTwo.text}{(votedFor(question, 'optionTwo', authedUser) && (<div><div className='voted-for-dot'>Voted for this One</div></div>))}</div>
                  <div className='votes2-results-card'>Votes: {q2answers} out of {totalResponses} votes | {perq2} %</div>
                  </div>)}
                  

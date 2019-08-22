@@ -10,11 +10,7 @@ class Questions extends Component {
   componentDidMount() {
     let { authedUser } = this.props;
     console.log(" redirect prop " + authedUser);
-    if (authedUser===undefined) {
-      this.props.history.push('/');
-    } else {
-         this.props.dispatch(handleReceiveQuestions());
-    }
+    this.props.dispatch(handleReceiveQuestions());
   }
 
   votedFor = id => {

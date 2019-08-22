@@ -73,20 +73,20 @@ export class Question extends Component {
                {(questiontype==='unanswered' && question!==undefined) &&  
                  (<Link to={`question/:${question.id}`}><div className='question-card'>
                   <img className='avatar-image avatar-question-card' src={avatar} width='70px' height='70px' />
-                 <div className='header-question-card'>{question.author} Asks...</div> 
-                 <div className='answered-question-card'>Would You Rather...</div> 
-                 <div className='asked-question-card'>...{question.optionOne.text}...</div>
-                 <div className='footer-question-card'><button className='view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>View Poll</button></div>
+                 <div className='question-card-title header-question-card'>{question.author} Asks...</div> 
+                 <div className='question-card-label1 answered-question-card'>Would You Rather...</div> 
+                 <div className='question-card-label1 asked-question-card'>...{question.optionOne.text}...</div>
+                 <div className='footer-question-card question-card-button'><button className='view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>View Poll</button></div>
                  </div>
                  </Link>)}
 
                  {(questiontype==='answered' && question!==undefined) &&  
                  (<Link to={`question/:${question.id}`}><div className='question-card'>
                   <img className='avatar-image avatar-question-card' src={avatar} width='70px' height='70px' />
-                 <div className='header-question-card'>{question.author} Asks...</div> 
-                 <div className='answered-question-card'>Would You Rather...</div> 
-                 <div className='asked-question-card'>...{question.optionOne.text}...</div>
-                 <div className='footer-question-card'><button className='view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>View Poll</button></div>
+                 <div className='question-card-title header-question-card'>{question.author} Asks...</div> 
+                 <div className='question-card-label1 answered-question-card'>Would You Rather...</div> 
+                 <div className='question-card-label1 asked-question-card'>...{question.optionOne.text}...</div>
+                 <div className='footer-question-card question-card-button'><button className='view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>View Poll</button></div>
                  </div>
                  </Link>)}
                  

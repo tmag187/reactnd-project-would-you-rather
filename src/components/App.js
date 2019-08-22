@@ -8,6 +8,7 @@ import  Questions from './Questions';
 import  AddQuestion from './AddQuestion';
 import  QuestionDetails from './QuestionDetails';
 import Leaderboard from './Leaderboard';
+import { ProtectedRoute } from './ProtectedRoute';
 import NotFound from './pages/NotFound';
 import '../App.css';
 
@@ -16,6 +17,11 @@ class App extends Component {
     this.props.dispatch(handleInitialUsers())
   }
   render() {
+  //let { authedUser } = this.props;
+  console.log(' rerender app with prop ' + this.props.authedUser);
+  if (this.props.authedUser!==undefined && this.props.authedUser!==null) {
+  console.log(' keys ' + Object.keys(this.props.authedUser).length);
+  }
   return (
     <Router>
     <div className="App">
@@ -26,10 +32,10 @@ class App extends Component {
       <div>
         <Switch>
             <Route exact path='/signin' component={Signin} />
-            <Route exact path='/' component={Questions} />        
-            <Route exact path='/question/:id' component={QuestionDetails} />
-            <Route exact path='/add' component={AddQuestion} />
-            <Route exact path='/leaderboard' component={Leaderboard} />
+            <ProtectedRoute exact path='/' component={Questions} authedUser={this.props.authedUser} />     
+            <ProtectedRoute exact path='/question/:id' component={QuestionDetails} authedUser={this.props.authedUser} />
+            <ProtectedRoute exact path='/add' component={AddQuestion} authedUser={this.props.authedUser} />
+            <ProtectedRoute exact path='/leaderboard' component={Leaderboard} authedUser={this.props.authedUser} />
             <Route component={NotFound} />
         </Switch>
         </div>
@@ -40,9 +46,10 @@ class App extends Component {
 }
 
 
-const mapStateToProps = ({users}) => {
+const mapStateToProps = ({users, authedUser}) => {
   return {
-    users
+    users,
+    authedUser
   }
 }
 

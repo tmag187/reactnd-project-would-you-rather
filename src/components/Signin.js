@@ -38,8 +38,7 @@ import { setAuthedUser } from '../actions/authedUserActions';
         return (
             <React.Fragment>
             <br />
-            <br />
-            <h2>Select a User</h2>
+            <div className='user-selection-label'>Select a User</div>
             <form onSubmit={this.handleSubmit} >
             <select value={this.state.value} name='users' className='select-sign' onChange={this.handleChange} >
                {  userIds.map(userId => (

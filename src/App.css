@@ -25,6 +25,14 @@
   color: black;
 }
 
+.user-selection-label {
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: black;
+  padding:0 0 30px 0;
+}
+
 .user-header {
   justify-content: right;
   padding-top:20px;
@@ -63,8 +71,7 @@
 }
 
 .score-dot-value {
-  align-items: center;
-  justify-content: center;
+  margin:auto;
 }
 
 .voted-for-dot {
@@ -83,6 +90,17 @@
   color: black;
   align-items: center;
   justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.add-question-header2 {
+  font-size: 20px;
+  padding-top: 1rem;
+  padding-left:40px;
+  color: black;
+  text-align:left;
+  align-items: left;
+  justify-content: left;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -135,6 +153,7 @@
 .question-label {
   position: relative;
   top:40px;
+  
 }
 
 .radio-label {
@@ -167,15 +186,11 @@
 }
 
 .avatar-image {
-  position: absolute;
-  left:80px;
-  align-items: left;
-  justify-content: left;
-  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  padding-top:10px;
 }
 
 .App-link {
@@ -185,6 +200,11 @@
 .answered-question-title {
   position: relative;
   top:15px;
+}
+
+.question-card-title {
+  align-items: center;
+  justify-content: center;
 }
 
 .answered-question-voted-for-label {
@@ -303,7 +323,10 @@
   grid-gap: 10px;
   padding: 10px;
   
-  margin: 50px 50px 50px 50px;
+  max-width: 40rem;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 50px;
   background-color: rgb(181, 228, 247);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   align-items: center;
@@ -341,7 +364,10 @@
     'avatar footer footer footer footer footer';
   grid-gap: 10px;
   
-  margin: 50px 50px 50px 50px;
+  max-width: 40rem;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 50px;
   background-color: rgb(181, 228, 247);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   align-items: center;
@@ -370,23 +396,46 @@
 
 .question-card {
   display:grid;
+  grid-template-columns:10px 150px auto auto auto auto auto;
+  grid-template-rows:10px auto auto auto;
   grid-template-areas:
-    '. header header header header2 header2'
-    'avatar answered answered answered answered answered'
-    'avatar asked asked asked asked asked'
-    'avatar footer footer footer footer footer';
-  grid-gap: 10px;
+    'left . header header header header2 header2'
+    'left avatar answered answered answered answered answered'
+    'left avatar asked asked asked asked asked'
+    'left avatar footer footer footer footer footer';
+  grid-gap: 20px;
   
-  margin: 50px 50px 50px 50px;
+  max-width: 40rem;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 50px;
   background-color: rgb(181, 228, 247);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  align-items: center;
-  justify-content: center;
+
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
   border:5px;
   border-color: black;
   color: black;
+}
+
+.question-card-title {
+  align-items: center;
+  justify-content: center;
+  font-style:bold;
+  padding-top:10px;
+}
+
+.question-card-label1 {
+  align-items: center;
+  justify-content: center;
+  padding-top:10px;
+}
+
+.question-card-button {
+  align-items: center;
+  justify-content: center;
+  padding-right:150px;
 }
 
 .question-card:hover {
@@ -396,6 +445,10 @@
 .question-card-grid>div {
     text-align: center;
     font-size: 14px;
+  }
+
+  .question-card-grid a {
+    text-decoration: none;
   }
   
   .header-question-card { grid-area: header; }

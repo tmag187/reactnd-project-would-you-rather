@@ -47,6 +47,7 @@ import { Link, Redirect } from 'react-router-dom';
             
             <React.Fragment>
                 <div className='add-question-header'>Add a Question</div>
+                <div className='add-question-header2'>Would You Rather...</div>
                  <form onSubmit={this.handleSubmit} >
                  <div className='add-question-label'>Answer 1</div>      
                 <textarea className='add-question-input' value={this.state.optionOneText} name='optionOneText' onChange={this.handleChange} />

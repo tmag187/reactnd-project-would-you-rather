@@ -6,27 +6,36 @@ import { votedFor } from '../utils/_DATA';
 class Leaderboard extends Component {
 
     scoreInfo = () => {
-        let { users, questions, authedUser } = this.props;
-        let results = {};
+        let { users, questions, userIds } = this.props;
+        let results = [];
         let id, qid;
         let details = {};
-        for (id in users){
+        userIds.forEach((id) => {
             details = {};
             details.id = id;
+            details.avatarURL = users[id].avatarURL;
             details.answered = 0;
             details.asked = 0;
             for (qid in questions) {
-                console.log(' user ' + id + ' questions[qid] ' + questions[qid]);
-                if (votedFor(questions[qid], 'optionOne', id) || (votedFor(questions[qid], 'optionTwo', id))) {                    
+                if (votedFor(questions[qid], 'optionOne', id) || (votedFor(questions[qid], 'optionTwo', id))) {                  
                     details.answered = details.answered + 1; 
-                    console.log(' details.answered ' + details.answered);
                 }
                 if (questions[qid].author === id) {
                     details.asked = details.asked + 1;
                 }
             } 
-            results[id] = details;
-        }       
+            results.push(details);
+        });  
+        results = results.sort(function(a, b) {
+            let totala = a.answered + a.asked;
+            let totalb = b.answered + b.asked;
+            if (totala>totalb) {
+                return -1;
+            } else {
+                return 1;
+            }
+        }); 
+
         this.setState({ results });
     }
 
@@ -34,13 +43,12 @@ class Leaderboard extends Component {
         this.scoreInfo();
     }
     render() {
-        let {userIds, users } = this.props;
         let { results } = this.state;
         return (
             <div>
                 <h2 className='score-card-header'>Leaderboard</h2>
-                {userIds.map((userid) => (
-                 <ScoreDetails userid={userid} key={userid} results={results} avatar={users[userid].avatarURL} />
+                {results.map((result) => (
+                 <ScoreDetails userid={result.id} key={result.id} results={result} avatar={result.avatarURL} />
                  ))}
             </div>
         )

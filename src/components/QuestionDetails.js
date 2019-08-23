@@ -73,12 +73,12 @@ export class QuestionDetails extends Component {
                  <div className='asked-question-card'>
                  <input type='radio' name='answer' onChange={this.handleChange} value='optionTwo' checked={this.state.selectedOption === 'optionTwo'} /> {question.optionTwo.text}
                  </div>
-                 <button className='footer-question-card view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>Submit Answer</button>
+                 <button className='footer-question-card submit-button' onClick={(e) => (this.handleSubmit(e, question.id))}>Submit Answer</button>
                  </div>)}
 
                  {((questionAnswered && question!==undefined) || submittedAnswer) &&  
                  (<div className='poll-results-card-grid'>
-                 <img className='avatar-image avatar-results-card' src={avatar} alt='user avatar' width='70px' height='70px' />
+                 <img className='results-avatar avatar-results-card' src={avatar} alt='user avatar' width='70px' height='70px' />
                  <div className='header-results-card'>Added by {question.author} Results:</div>
                  <div className='option1-results-card'>{question.optionOne.text}{(votedFor(question, 'optionOne', authedUser) && (<div><div className='voted-for-dot'>Voted for this One</div></div>))}</div>
                  <div className='votes1-results-card'>Votes: {q1answers} out of {totalResponses} votes | {perq1} %</div>

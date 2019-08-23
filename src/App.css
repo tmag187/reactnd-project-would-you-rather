@@ -68,10 +68,14 @@
   background-color: rgb(224, 228, 2);
   border-radius: 50%;
   display: inline-block;
+  text-align:center;
+  margin-left:5px;
 }
 
 .score-dot-value {
-  margin:auto;
+  margin-top:20px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .voted-for-dot {
@@ -123,6 +127,7 @@
   margin: 10px 10px 10px 10px;
   font-size: 18px;
   width:80%;
+  max-width:80rem;
   font-family: Arial, Helvetica, sans-serif;
   border:1px;
   border-style: solid;
@@ -183,6 +188,7 @@
   border: none; 
   margin-top: 10px;
   color: white;
+  
 }
 
 .avatar-image {
@@ -315,13 +321,14 @@
 
 .user-score-card-grid {
   display:grid;
+  grid-template-columns:30px 120px auto auto auto auto auto;
+  grid-template-rows:40px auto auto auto;
   grid-template-areas:
-    'avatar header header header header header'
-    'avatar answered answered answered total total'
-    'avatar asked asked asked asked asked'
-    'avatar footer footer footer footer footer';
+    'left avatar header header header header header'
+    'left avatar answered answered answered total total'
+    'left avatar asked asked asked asked asked'
+    'left avatar footer footer footer footer footer';
   grid-gap: 10px;
-  padding: 10px;
   
   max-width: 40rem;
   margin-left:auto;
@@ -330,7 +337,7 @@
   background-color: rgb(181, 228, 247);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
   border:5px;
@@ -339,7 +346,7 @@
 }
 
 .user-score-card-grid>div {
-  margin: 10px;
+  margin: 4px;
   text-align: center;
   line-height: 10px;
   font-size: 18px;
@@ -355,13 +362,15 @@
 
 .poll-results-card-grid {
   display:grid;
+  grid-template-columns:auto auto auto auto auto auto;
+  grid-template-rows:30px auto auto auto auto auto;
   grid-template-areas:
-    'avatar header header header header header'
-    'avatar option1 option1 option1 total total'
-    'avatar votes1 votes1 votes1 total total'
-    'avatar option2 option2 option2 asked asked'
-    'avatar votes2 votes2 votes2 asked asked'
-    'avatar footer footer footer footer footer';
+    '. rcheader rcheader rcheader rcheader rcheader'
+    'rcavatar rcoption1 rcoption1 rcoption1 rctotal rctotal'
+    'rcavatar rcvotes1 rcvotes1 rcvotes1 rcvotes1 rcvotes1'
+    'rcavatar rcoption2 rcoption2 rcoption2 rcasked rcasked'
+    'rcavatar rcvotes2 rcvotes2 rcvotes2 rcasked rcasked'
+    'rcavatar rcfooter rcfooter rcfooter rcfooter rcfooter';
   grid-gap: 10px;
   
   max-width: 40rem;
@@ -379,24 +388,32 @@
   color: black;
 }
 
+.results-avatar {
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-left:-90px;
+}
+
 .poll-results-card-grid>div {
-  text-align: center;
   font-size: 14px;
 }
 
-.header-results-card { grid-area: header; }
-.avatar-results-card { grid-area: avatar; }
-.option1-results-card { grid-area: option1; }
-.votes1-results-card { grid-area: votes1; }
-.total-results-card { grid-area: total; }
-.option2-results-card { grid-area: option2; }
-.votes2-results-card { grid-area: votes2; }
-.asked-results-card { grid-area: asked; }
-.footer-results-card { grid-area: footer; }
+.header-results-card { grid-area: rcheader; }
+.avatar-results-card { grid-area: rcavatar; }
+.option1-results-card { grid-area: rcoption1; }
+.votes1-results-card { grid-area: rcvotes1; }
+.total-results-card { grid-area: rctotal; }
+.option2-results-card { grid-area: rcoption2; }
+.votes2-results-card { grid-area: rcvotes2; }
+.asked-results-card { grid-area: rcasked; }
+.footer-results-card { grid-area: rcfooter; }
 
 .question-card {
   display:grid;
-  grid-template-columns:10px 150px auto auto auto auto auto;
+  grid-template-columns:10px auto auto auto auto auto auto;
   grid-template-rows:10px auto auto auto;
   grid-template-areas:
     'left . header header header header2 header2'
@@ -408,6 +425,7 @@
   max-width: 40rem;
   margin-left:auto;
   margin-right:auto;
+  align-content:center;
   margin-top: 50px;
   background-color: rgb(181, 228, 247);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -435,7 +453,6 @@
 .question-card-button {
   align-items: center;
   justify-content: center;
-  padding-right:150px;
 }
 
 .question-card:hover {

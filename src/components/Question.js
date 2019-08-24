@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { QuestionDetails } from './QuestionDetails';
-import { withRouter } from 'react-router-dom';
-
 
 export class Question extends Component {
     state = {
@@ -41,11 +38,9 @@ export class Question extends Component {
         let avatar = "";
         if (question !== undefined) {
           console.log(" questiontype " + questiontype);
-          let { id, author } = question;
+          let { author } = question;
           
           console.log(" prop author " + author);
-          //  console.log(' prop avatar ' + avatar);
-          /*  userAvatar = users[author].avatarURL; */
           if (users !== undefined) {
             let avatarUser = users[author];
             avatar = avatarUser['avatarURL'];
@@ -72,7 +67,7 @@ export class Question extends Component {
                 
                {(questiontype==='unanswered' && question!==undefined) &&  
                  (<Link to={`question/:${question.id}`}><div className='question-card'>
-                  <img className='avatar-image avatar-question-card' src={avatar} width='70px' height='70px' />
+                  <img className='avatar-image avatar-question-card' src={avatar} alt='user avatar' width='70px' height='70px' />
                  <div className='question-card-title header-question-card'>{question.author} Asks...</div> 
                  <div className='question-card-label1 answered-question-card'>Would You Rather...</div> 
                  <div className='question-card-label1 asked-question-card'>...{question.optionOne.text}...</div>
@@ -82,7 +77,7 @@ export class Question extends Component {
 
                  {(questiontype==='answered' && question!==undefined) &&  
                  (<Link to={`question/:${question.id}`}><div className='question-card'>
-                  <img className='avatar-image avatar-question-card' src={avatar} width='70px' height='70px' />
+                  <img className='avatar-image avatar-question-card' src={avatar} alt='user avatar' width='70px' height='70px' />
                  <div className='question-card-title header-question-card'>{question.author} Asks...</div> 
                  <div className='question-card-label1 answered-question-card'>Would You Rather...</div> 
                  <div className='question-card-label1 asked-question-card'>...{question.optionOne.text}...</div>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUserActions';
+import { withRouter } from 'react-router-dom';
+
  class Signin extends Component {
      constructor(props){
         super(props);
@@ -61,4 +63,4 @@ const mapStateToProps = ({users}) => {
     }
   }
   
-  export default connect(mapStateToProps)(Signin);
+  export default withRouter(connect(mapStateToProps)(Signin));

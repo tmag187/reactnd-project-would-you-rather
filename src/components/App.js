@@ -14,14 +14,12 @@ import '../App.css';
 
 class App extends Component {
   componentDidMount() {
-    this.props.dispatch(handleInitialUsers())
+    this.props.dispatch(handleInitialUsers());
+    console.log('*** App component did mount ')
   }
   render() {
-  //let { authedUser } = this.props;
-  console.log(' rerender app with prop ' + this.props.authedUser);
-  if (this.props.authedUser!==undefined && this.props.authedUser!==null) {
-  console.log(' keys ' + Object.keys(this.props.authedUser).length);
-  }
+  console.log('** rerender app with prop ' + this.props.authedUser);
+
   return (
     <Router>
     <div className="App">

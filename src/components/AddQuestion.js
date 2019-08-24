@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux';
 import { handleAddQuestion } from '../actions/questionsActions';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
  class AddQuestion extends Component {
 
@@ -21,9 +21,7 @@ import { Link, Redirect } from 'react-router-dom';
             " Both answers must be entered to submit the question."
           );
         } else {
-          console.log("submit >--" + optionOneText);
-          console.log("submit >--" + optionTwoText);
-          console.log("user:" + authedUser);
+
           let unformattedQuestion = {
             optionOneText: optionOneText,
             optionTwoText: optionTwoText,
@@ -68,4 +66,4 @@ const mapStateToProps = ({authedUser, questions}) => {
     }
   }
 
-export default connect(mapStateToProps)(AddQuestion);
+export default withRouter(connect(mapStateToProps)(AddQuestion));

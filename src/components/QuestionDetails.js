@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { handleAnswerQuestion } from '../actions/questionsActions';
 import { votedFor } from '../utils/_DATA';
-import { Link, Redirect } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
 
 
 export class QuestionDetails extends Component {
@@ -39,12 +37,9 @@ export class QuestionDetails extends Component {
     render() {
         const { question, authedUser, users } = this.props;
         const { submittedAnswer } = this.state;
-        let { questionDetails } = this.props;
-        questionDetails = 'unanswered';
         console.log(' questiontype ' + this.props.location.state.questiontype);
        // console.log(' -->avatar '+ avatar);
         let questionAnswered = this.props.location.state.questiontype;
-        const { toDetail } = this.state;
         let avatar = '';
         let q1answers, q2answers, totalResponses, perq1, perq2;
         if (question!==undefined) {

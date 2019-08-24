@@ -2,15 +2,29 @@ import React, { Component } from 'react'
 import { handleReceiveQuestions } from '../actions/questionsActions';
 import Question from './Question';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
  
 class Questions extends Component {
   state = {
     questionList: "unanswered"
   };
   componentDidMount() {
-    let { authedUser } = this.props;
-    console.log(" redirect prop " + authedUser);
     this.props.dispatch(handleReceiveQuestions());
+
+  }
+
+  orderedObject = (questionIds, questions) => {
+    let newIds = [];
+    let idObj = {};
+    questionIds.forEach((id) => {
+      idObj = {};
+      idObj.id = id;
+      idObj.timestamp = questions[id].timestamp;
+      newIds.push(idObj);
+    });
+    newIds = newIds.sort((a, b) =>  b.timestamp - a.timestamp );
+
+    return newIds;
   }
 
   votedFor = id => {
@@ -39,13 +53,12 @@ class Questions extends Component {
   };
 
   render() {
-    const { questionIds, authedUser, questions } = this.props;
+    let { questionIds, authedUser, questions } = this.props;
     console.log(" authed user " + authedUser);
     const { questionList } = this.state;
-    //console.log(' voted user ' + questions[questionIds[0]]);
     if (questions !== undefined) {
       console.log(" voted user " + questionIds[0]);
-      //  this.votedFor(questions[questionIds[0]]);
+      questionIds = this.orderedObject(questionIds, questions);
     }
     return (
       <React.Fragment>
@@ -68,9 +81,9 @@ class Questions extends Component {
         {questionList === "unanswered" && (
           <div>
             {questionIds.map(
-              id =>
-                !this.votedFor(id) && (
-                  <Question id={id} key={id} questiontype={questionList} />
+              idObj =>
+                !this.votedFor(idObj.id) && (
+                  <Question id={idObj.id} key={idObj.id} questiontype={questionList} />
                 )
             )}
           </div>
@@ -78,9 +91,9 @@ class Questions extends Component {
         {questionList === "answered" && (
           <div>
             {questionIds.map(
-              id =>
-                this.votedFor(id) && (
-                  <Question id={id} key={id} questiontype={questionList} />
+              idObj =>
+                this.votedFor(idObj.id) && (
+                  <Question id={idObj.id} key={idObj.id} questiontype={questionList} />
                 )
             )}
           </div>
@@ -98,4 +111,4 @@ const mapStateToProps = ({questions, authedUser}) => {
     }
   }
   
-  export default connect(mapStateToProps)(Questions);
+  export default withRouter(connect(mapStateToProps)(Questions));

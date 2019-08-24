@@ -8,7 +8,7 @@ class Leaderboard extends Component {
     scoreInfo = () => {
         let { users, questions, userIds } = this.props;
         let results = [];
-        let id, qid;
+        let qid;
         let details = {};
         userIds.forEach((id) => {
             details = {};

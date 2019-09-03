@@ -21,12 +21,24 @@ import { withRouter } from 'react-router-dom';
         this.setState({ value: user });
         console.log(" user set @>" + user);
         this.props.dispatch(setAuthedUser(user));
-        this.props.history.push("/");
+        
       } else {
         const value = this.state.value;
         console.log(" submitted >" + value);
         this.props.dispatch(setAuthedUser(value));
-        this.props.history.push("/");
+        
+      }
+      let path = (localStorage.lastpage);
+      if (path) 
+      {
+        let prevPage = this.props.location.state.from.pathname;
+         if (prevPage.match(/\/question\/\w+/)) {
+            path =  '/error';
+         } 
+         this.props.history.push(path);
+      } else {
+         path = '/';
+         this.props.history.push(path);
       }
     };
 

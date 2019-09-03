@@ -11,7 +11,8 @@ class InfoBar extends Component {
 
     static getDerivedStateFromProps(props, state) {
       let { authedUser } = props;
-      if (authedUser) {
+      if (authedUser!==undefined && authedUser!==null) {
+        console.log(' setting authenticated to true ');
             return {isAuthenticated:true};
       } else {
         return {isAuthenticated:false};
@@ -21,6 +22,7 @@ class InfoBar extends Component {
     onSignout = (e) => {
         e.preventDefault();
         this.props.dispatch(setAuthedUser(null));
+        localStorage.removeItem('lastpage');
         this.setState({toSignin:true});
     }
 

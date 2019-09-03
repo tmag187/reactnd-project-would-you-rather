@@ -9,8 +9,8 @@ class Questions extends Component {
     questionList: "unanswered"
   };
   componentDidMount() {
-    this.props.dispatch(handleReceiveQuestions());
-
+  //  this.props.dispatch(handleReceiveQuestions());
+    localStorage.setItem('lastpage', '/');
   }
 
   orderedObject = (questionIds, questions) => {

@@ -15,6 +15,15 @@ switch (action.type) {
     case ADD_QUESTION:
         let { question } = action;
         console.log(' question reducer ' + question);
+        let lsQuestions = localStorage.questions;
+        if (lsQuestions === undefined) {
+            localStorage.setItem('questions', JSON.stringify([]));
+        } else {
+            lsQuestions = JSON.parse(lsQuestions);    
+        }
+        lsQuestions.push(question);
+        localStorage.setItem('questions', JSON.stringify(lsQuestions));
+        
         return {
             ...state,
             [action.question.id]:question

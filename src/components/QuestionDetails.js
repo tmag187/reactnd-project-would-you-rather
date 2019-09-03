@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { handleAnswerQuestion } from '../actions/questionsActions';
 import { votedFor } from '../utils/_DATA';
+import { Redirect } from 'react-router-dom';
 
 
 export class QuestionDetails extends Component {
@@ -37,6 +38,9 @@ export class QuestionDetails extends Component {
     render() {
         const { question, authedUser, users } = this.props;
         const { submittedAnswer } = this.state;
+        if (this.props.location.state===undefined) {
+            return <Redirect to='/error' />
+        }
         console.log(' questiontype ' + this.props.location.state.questiontype);
        // console.log(' -->avatar '+ avatar);
         let questionAnswered = this.props.location.state.questiontype;

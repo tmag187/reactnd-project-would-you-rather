@@ -37,6 +37,10 @@ import { Redirect, withRouter } from 'react-router-dom';
         this.setState({[e.target.name]:e.target.value});
     }
 
+    componentDidMount() {
+      localStorage.setItem('lastpage', 'add');
+    }
+
     render() {
         if (this.state.toHome) {
             return <Redirect to='/' />

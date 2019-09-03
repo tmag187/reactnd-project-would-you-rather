@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import ScoreDetails from './ScoreDetails';
 import { votedFor } from '../utils/_DATA';
+import { withRouter } from 'react-router-dom';
+import { handleReceiveQuestions } from '../actions/questionsActions';
 
 class Leaderboard extends Component {
-
+    state = {
+        results:[]
+    }
     scoreInfo = () => {
         let { users, questions, userIds } = this.props;
         let results = [];
@@ -39,11 +43,17 @@ class Leaderboard extends Component {
         this.setState({ results });
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.scoreInfo();
+        localStorage.setItem('lastpage', 'leaderboard');
     }
     render() {
         let { results } = this.state;
+        let { questions } = this.props;
+        if (questions === undefined) {
+            this.props.dispatch(handleReceiveQuestions());
+            this.scoreInfo();
+        }
         return (
             <div>
                 <h2 className='score-card-header'>Leaderboard</h2>
@@ -64,4 +74,4 @@ const mapStateToProps = ({questions, users, authedUser}) => {
     }
   }
 
-export default connect(mapStateToProps)(Leaderboard)
+export default connect(mapStateToProps)(Leaderboard);

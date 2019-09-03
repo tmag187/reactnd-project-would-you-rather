@@ -34,19 +34,16 @@ class Questions extends Component {
       return vote === authedUser;
     });
     if (votedfor === true) {
-      console.log(" vquestions " + votedfor);
       return votedfor;
     }
     votedfor = questions[id].optionTwo.votes.some(vote => {
       return vote === authedUser;
     });
 
-    console.log(" vquestions " + votedfor);
     return votedfor;
   };
 
   handleAnsweredChange = e => {
-    console.log(" questiontype " + e.target.value);
     this.setState({
       questionList: e.target.value
     });

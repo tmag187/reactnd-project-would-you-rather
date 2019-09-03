@@ -19,15 +19,8 @@ class App extends Component {
     if (localStorage.user==="null" || localStorage.user===undefined || Object.keys(this.props.users).length===0) {
     this.props.dispatch(handleInitialUsers());
     }
-    console.log('*** App component did mount ');
-   /*  if (localStorage.user!=='null') {
-      this.props.dispatch(handleInitialUsers());
-      this.props.dispatch(setAuthedUser(localStorage.user));
-    }
- */
   }
   render() {
-  console.log('** rerender app with prop ' + this.props.authedUser);
 
   return (
     <Router>

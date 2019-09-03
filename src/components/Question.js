@@ -9,7 +9,6 @@ export class Question extends Component {
     }
     handleSubmit = (e, id) => {
         e.preventDefault();
-        console.log(' submitted ' + id);
         this.setState({
             toDetail:true,
             answered:true
@@ -40,7 +39,6 @@ export class Question extends Component {
           console.log(" questiontype " + questiontype);
           let { author } = question;
           
-          console.log(" prop author " + author);
           if (users !== undefined) {
             let avatarUser = users[author];
             avatar = avatarUser['avatarURL'];
@@ -66,24 +64,24 @@ export class Question extends Component {
             <React.Fragment>               
                 
                {(questiontype==='unanswered' && question!==undefined) &&  
-                 (<Link to={`question/:${question.id}`}><div className='question-card'>
+                 (<div className='question-card'>
                   <img className='avatar-image avatar-question-card' src={avatar} alt='user avatar' width='70px' height='70px' />
                  <div className='question-card-title header-question-card'>{question.author} Asks...</div> 
                  <div className='question-card-label1 answered-question-card'>Would You Rather...</div> 
                  <div className='question-card-label1 asked-question-card'>...{question.optionOne.text}...</div>
                  <div className='footer-question-card question-card-button'><button className='view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>View Poll</button></div>
                  </div>
-                 </Link>)}
+                 )}
 
                  {(questiontype==='answered' && question!==undefined) &&  
-                 (<Link to={`question/:${question.id}`}><div className='question-card'>
+                 (<div className='question-card'>
                   <img className='avatar-image avatar-question-card' src={avatar} alt='user avatar' width='70px' height='70px' />
                  <div className='question-card-title header-question-card'>{question.author} Asks...</div> 
                  <div className='question-card-label1 answered-question-card'>Would You Rather...</div> 
                  <div className='question-card-label1 asked-question-card'>...{question.optionOne.text}...</div>
                  <div className='footer-question-card question-card-button'><button className='view-button' onClick={(e) => (this.handleSubmit(e, question.id))}>View Poll</button></div>
                  </div>
-                 </Link>)}
+                 )}
                  
             </React.Fragment>
         )

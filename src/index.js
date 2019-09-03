@@ -6,7 +6,7 @@ import reducers from './reducers';
 import middleware from './middleware';
 import App from './components/App';
 
-const store = createStore(reducers, compose(middleware,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+const store = createStore(reducers, middleware);
 
 localStorage.setItem('user', null);
 ReactDOM.render(

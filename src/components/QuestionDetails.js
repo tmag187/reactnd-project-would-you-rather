@@ -14,8 +14,6 @@ export class QuestionDetails extends Component {
         e.preventDefault();
         const { authedUser } = this.props;
         const { selectedOption }  = this.state;
-        console.log(' submitted ' + id);
-        console.log(' submitted authuser ' + authedUser);
         console.log(' selected option ' + selectedOption);
         
         this.props.dispatch(handleAnswerQuestion(authedUser, id, selectedOption));
@@ -24,13 +22,11 @@ export class QuestionDetails extends Component {
 
     handleChange = (e) => {
         this.setState({selectedOption:e.target.value});
-        console.log(' selected ' + e.target.value);
     }
 
         
 
     static getDerivedStateFromProps(props, state) {
-   //     let { answered } = props.location.state.questiontype;
         console.log(' redirect prop ' );
         return null;
     }
@@ -42,7 +38,6 @@ export class QuestionDetails extends Component {
             return <Redirect to='/error' />
         }
         console.log(' questiontype ' + this.props.location.state.questiontype);
-       // console.log(' -->avatar '+ avatar);
         let questionAnswered = this.props.location.state.questiontype;
         let avatar = '';
         let q1answers, q2answers, totalResponses, perq1, perq2;

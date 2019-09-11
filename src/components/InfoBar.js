@@ -12,7 +12,6 @@ class InfoBar extends Component {
     static getDerivedStateFromProps(props, state) {
       let { authedUser } = props;
       if (authedUser!==undefined && authedUser!==null) {
-        console.log(' setting authenticated to true ');
             return {isAuthenticated:true};
       } else {
         return {isAuthenticated:false};

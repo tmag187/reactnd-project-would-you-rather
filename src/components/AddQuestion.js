@@ -28,7 +28,6 @@ import { Redirect, withRouter } from 'react-router-dom';
             author: authedUser
           };
           this.props.dispatch(handleAddQuestion(unformattedQuestion));
-          //  this.props.history.push('/');
           this.setState({ toHome: "true" });
         }
     }

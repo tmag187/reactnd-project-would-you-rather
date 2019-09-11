@@ -15,6 +15,7 @@ import { withRouter } from 'react-router-dom';
     handleSubmit = e => {
       e.preventDefault();
       console.log(" submitted >" + this.state.value);
+      let { questions } = this.props;
       if (this.state.value === "") {
         let { userIds } = this.props;
         let user = userIds[0];
@@ -29,17 +30,32 @@ import { withRouter } from 'react-router-dom';
         
       }
       let path = (localStorage.lastpage);
-      if (path) 
+      let prevPage;
+      if (this.props.location.state!==undefined) {
+        prevPage = this.props.location.state.from.pathname;
+        if (prevPage.match(/\/question\/\w+/)) 
       {
-        let prevPage = this.props.location.state.from.pathname;
-         if (prevPage.match(/\/question\/\w+/)) {
-            path =  '/error';
-         } 
-         this.props.history.push(path);
+           if (questions!==undefined) {
+              let questionId = (prevPage.split('/'))[2];
+              if (questions.hasOwnProperty(questionId)) {
+                path = prevPage;
+              } else {
+                path =  '/error';
+              }           
+           }
+           else {
+             path = '/';
+           }
+           this.props.history.push(path);
       } else {
-         path = '/';
-         this.props.history.push(path);
+          this.props.history.push(prevPage);
       }
+      } else {
+        path = '/';
+        this.props.history.push(path);
+     }
+      
+      
     };
 
     handleChange = (e) => {
@@ -68,10 +84,11 @@ import { withRouter } from 'react-router-dom';
     }
 }
 
-const mapStateToProps = ({users}) => {
+const mapStateToProps = ({users, questions}) => {
     return {
       userIds:Object.keys(users),
-      users
+      users,
+      questions
     }
   }
   

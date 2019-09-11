@@ -34,11 +34,18 @@ export class QuestionDetails extends Component {
     render() {
         const { question, authedUser, users } = this.props;
         const { submittedAnswer } = this.state;
-        if (this.props.location.state===undefined) {
+        /* if (this.props.location.state===undefined) {
             return <Redirect to='/error' />
+        } */
+        let questionAnswered = false;
+        if (this.props.location.state!==undefined) {
+             questionAnswered = this.props.location.state.questiontype;
         }
-        console.log(' questiontype ' + this.props.location.state.questiontype);
-        let questionAnswered = this.props.location.state.questiontype;
+        else {
+           if ((votedFor(question, 'optionOne', authedUser)) || (votedFor(question, 'optionTwo', authedUser))) {
+              questionAnswered = true;
+           }
+        }
         let avatar = '';
         let q1answers, q2answers, totalResponses, perq1, perq2;
         if (question!==undefined) {

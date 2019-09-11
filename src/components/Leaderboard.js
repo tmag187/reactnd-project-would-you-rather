@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import ScoreDetails from './ScoreDetails';
 import { votedFor } from '../utils/_DATA';
-import { withRouter } from 'react-router-dom';
 import { handleReceiveQuestions } from '../actions/questionsActions';
 
 class Leaderboard extends Component {

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { handleAnswerQuestion } from '../actions/questionsActions';
 import { votedFor } from '../utils/_DATA';
-import { Redirect } from 'react-router-dom';
 
 
 export class QuestionDetails extends Component {

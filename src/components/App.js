@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { handleInitialUsers } from '../actions/sharedActions';
 
 import { connect } from 'react-redux';
@@ -12,7 +12,7 @@ import Leaderboard from './Leaderboard';
 import { ProtectedRoute } from './ProtectedRoute';
 import NotFound from './pages/NotFound';
 import '../App.css';
-import { setAuthedUser } from '../actions/authedUserActions';
+//import { setAuthedUser } from '../actions/authedUserActions';
 
 class App extends Component {
   componentDidMount() {

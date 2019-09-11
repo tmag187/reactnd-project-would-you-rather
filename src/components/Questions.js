@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { handleReceiveQuestions } from '../actions/questionsActions';
+//import { handleReceiveQuestions } from '../actions/questionsActions';
 import Question from './Question';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';

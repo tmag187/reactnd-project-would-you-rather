@@ -137,7 +137,7 @@
 
 .add-question-input:focus {
   border-color:black;
-  background-color: rgb(181, 228, 247);
+  background-color: rgb(211, 233, 241);
   border:2px;
 }
 
